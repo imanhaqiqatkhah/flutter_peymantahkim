@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/welcome_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
+import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -15,21 +17,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingData> _pages = [
     OnboardingData(
-      title: 'با ترس هایت روبرو شو',
+      title: 'ساخت و تولید توسط شرکت دانش بنیان ما',
       description:
-          'با ما همراه شو و موفق شو، زندگی کن و بگذار بادهای بادها ازت عبور کنند، فقط به جلو نگاه کن و دنبال حاشیه نباش',
+          'شرکت دانش‌بنیان مهندسی پیمان تحکیم خوزستان، پیشگام در تأمین، طراحی و تولید تجهیزات صنعتی پیشرفته است.',
       image: './assets/images/onboarding1.jpg',
     ),
     OnboardingData(
-      title: 'راه رسیدن به هدف',
+      title: 'تعمیر تجهیز توسط شرکت دانش بنیان ما',
       description:
-          'همیشه یاد بگیر و به دنبال یادگیری باش، همیچکس جز خودت قرار نیست برای شما تا ابد بماند، خودت حال خوب خودت باش',
+          ' تعمیر شامل بررسی دقیق بردهای داخلی، تعویض قطعات معیوب، و تست عملکرد پنل برای اطمینان از کارایی و دقت بالا بوده است',
       image: './assets/images/onboarding2.jpg',
     ),
     OnboardingData(
-      title: 'امانت دار خوبی باش',
+      title: 'تامین تجهیز توسط شرکت دانش بنیان ما',
       description:
-          'خداوند در تمام زندگی تو را در امان نگه داشته و از تو مراقبت میکند، زندگی بالا پایین دارد ، مهم عملکرد تو در برابر پستی و بلندی هاست',
+          'شرکت دانش‌بنیان مهندسی پیمان تحکیم خوزستان، با تأمین تجهیزات صنعتی پیشرفته، کارت شبکه سیستم اعلان حریق را با بالاترین استانداردهای جهانی عرضه می‌کند.',
       image: './assets/images/onboarding3.jpg',
     ),
   ];
@@ -50,6 +52,109 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemBuilder: (context, index) {
               return OnboardingPage(data: _pages[index]);
             },
+          ),
+          Positioned(
+            top: 48,
+            right: 24,
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WelcomeScreen(),
+                  ),
+                );
+              },
+              child: Text(
+                'رد کردن',
+                style: TextStyle(
+                  color: AppTheme.primaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+                textDirection: TextDirection.rtl,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 48,
+            left: 24,
+            right: 24,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    _pages.length,
+                    (index) => AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      margin: EdgeInsets.symmetric(horizontal: 4),
+                      height: 8,
+                      width: _currentPage == index ? 24 : 8,
+                      decoration: BoxDecoration(
+                          color: AppTheme.primaryColor.withOpacity(
+                            _currentPage == index ? 1 : 0.3,
+                          ),
+                          borderRadius: BorderRadius.circular(4)),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 32),
+                Row(
+                  children: [
+                    if (_currentPage > 0)
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {
+                            _pageController.previousPage(
+                                duration: Duration(milliseconds: 300),
+                                curve: Curves.easeInOut);
+                          },
+                          style: OutlinedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 16),
+                              side: BorderSide(color: AppTheme.primaryColor),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12))),
+                          child: Text(
+                            'برگشت',
+                            style: TextStyle(
+                              color: AppTheme.primaryColor,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (_currentPage > 0) const SizedBox(width: 16),
+                    Expanded(
+                      child: GradientButton(
+                        text: _currentPage == _pages.length - 1
+                            ? "بزن بریم"
+                            : 'بعدی',
+                        gradient: [
+                          AppTheme.primaryColor,
+                          AppTheme.primaryColor.withOpacity(0.8),
+                        ],
+                        onPressed: () {
+                          if (_currentPage < _pages.length - 1) {
+                            _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WelcomeScreen(),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),
@@ -76,13 +181,13 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(32),
+      padding: EdgeInsets.symmetric(horizontal: 28),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             data.image,
-            width: MediaQuery.of(context).size.width * 0.7,
+            width: MediaQuery.of(context).size.width * 0.35,
           ),
           SizedBox(height: 48),
           Text(
