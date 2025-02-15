@@ -44,15 +44,14 @@ class _SplashScreenState extends State<SplashScreen>
     _startLoadingProgress();
 
     Timer(
-      const Duration(seconds: 5),
+      const Duration(seconds: 4),
       () {
         if (mounted) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => OnboardingScreen(),
-            ),
-          );
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OnboardingScreen(),
+              ));
         }
       },
     );
