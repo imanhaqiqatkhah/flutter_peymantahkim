@@ -187,7 +187,7 @@ class OnboardingPage extends StatelessWidget {
         children: [
           Image.asset(
             data.image,
-            width: MediaQuery.of(context).size.width * 0.6,
+            width: MediaQuery.of(context).size.width * 0.65,
           ),
           SizedBox(height: 48),
           Text(
