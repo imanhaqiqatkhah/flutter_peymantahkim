@@ -17,22 +17,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingData> _pages = [
     OnboardingData(
-      title: 'ساخت و تولید توسط شرکت دانش بنیان ما',
+      title: 'طراحی و تولید محصول',
       description:
           'شرکت دانش‌بنیان مهندسی پیمان تحکیم خوزستان، پیشگام در تأمین، طراحی و تولید تجهیزات صنعتی پیشرفته است.',
-      image: './assets/images/onboarding1.jpg',
+      image: './assets/images/onboarding1.png',
     ),
     OnboardingData(
-      title: 'تعمیر تجهیز توسط شرکت دانش بنیان ما',
+      title: 'تعمیر تجهیز',
       description:
           ' تعمیر شامل بررسی دقیق بردهای داخلی، تعویض قطعات معیوب، و تست عملکرد پنل برای اطمینان از کارایی و دقت بالا بوده است',
-      image: './assets/images/onboarding2.jpg',
+      image: './assets/images/onboarding2.png',
     ),
     OnboardingData(
-      title: 'تامین تجهیز توسط شرکت دانش بنیان ما',
+      title: 'تامین تجهیز',
       description:
           'شرکت دانش‌بنیان مهندسی پیمان تحکیم خوزستان، با تأمین تجهیزات صنعتی پیشرفته، کارت شبکه سیستم اعلان حریق را با بالاترین استانداردهای جهانی عرضه می‌کند.',
-      image: './assets/images/onboarding3.jpg',
+      image: './assets/images/onboarding3.png',
     ),
   ];
   @override
@@ -187,7 +187,7 @@ class OnboardingPage extends StatelessWidget {
         children: [
           Image.asset(
             data.image,
-            width: MediaQuery.of(context).size.width * 0.35,
+            width: MediaQuery.of(context).size.width * 0.6,
           ),
           SizedBox(height: 48),
           Text(
