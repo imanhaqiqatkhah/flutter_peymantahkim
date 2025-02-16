@@ -28,7 +28,6 @@ class WelcomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(),
                     Row(
                       children: [
                         Container(
@@ -39,42 +38,43 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                           child: Image.asset(
                             './assets/icons/LOGO_PEYMAN-TAHKIM.png',
-                            width: 31,
-                            height: 31,
+                            width: 40,
+                            height: 40,
                           ),
                         ),
                         SizedBox(width: 12),
                         Text(
-                          'شرکت پیمان تحکیم خوزستان',
+                          'شرکت دانش بنیان مهندسی \nپیمان تحکیم خوزستان',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         )
                       ],
                     ),
+                    Spacer(),
                     SizedBox(height: 12),
                     Text(
-                      'دارای\n مجموعه فنی و مهندسی',
+                      'دارای\n دفتر فنی و مهندسی',
                       style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 36,
                         color: Colors.white,
                         height: 1.2,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    SizedBox(height: 8),
                     Text(
                       'جزء بالاترین رتبه شرکت های دانش بنیان ایران',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withOpacity(0.6),
                         height: 1.5,
                       ),
                     ),
                     SizedBox(height: 48),
                     GradientButton(
-                      text: 'بزن بریم',
+                      text: 'ثبت نام',
                       onPressed: () {
                         // Navigator.push(
                         //   context,
@@ -84,11 +84,39 @@ class WelcomeScreen extends StatelessWidget {
                         // );
                       },
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: 6),
+                    SizedBox(height: 14),
                     SizedBox(
                       width: double.infinity,
+                      child: TextButton(
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 16),
+                            side: BorderSide(
+                              color: Colors.white,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          onPressed: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => LoginScreen(),
+                            //    ),
+                            // );
+                          },
+                          child: Text(
+                            'ورود',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 48,
                     )
-                    // child: TextButton(onPressed: (){}, child: ),)
                   ],
                 ),
               ),
