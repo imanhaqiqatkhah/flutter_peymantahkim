@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/loginScreen.dart';
+import 'package:flutter_peymantahkim/screens/signup_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
@@ -76,12 +78,12 @@ class WelcomeScreen extends StatelessWidget {
                     GradientButton(
                       text: 'ثبت نام',
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => SignUpScreen(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignUpScreen(),
+                          ),
+                        );
                       },
                     ),
                     SizedBox(height: 6),
@@ -99,12 +101,12 @@ class WelcomeScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => LoginScreen(),
-                            //    ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
                           },
                           child: Text(
                             'ورود',
