@@ -9,16 +9,19 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final Widget? suffixIcon;
+  final TextAlign textAlign;
 
-  const CustomTextField(
-      {super.key,
-      required this.label,
-      required this.prefixIcon,
-      this.isPassword = false,
-      this.keyboardType,
-      this.validator,
-      this.controller,
-      this.suffixIcon});
+  const CustomTextField({
+    super.key,
+    required this.label,
+    required this.prefixIcon,
+    this.isPassword = false,
+    this.keyboardType,
+    this.validator,
+    this.controller,
+    this.suffixIcon,
+    this.textAlign = TextAlign.end,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: isPassword,
         keyboardType: keyboardType,
         validator: validator,
+        textAlign: textAlign,
         style: TextStyle(
           color: AppTheme.textPrimary,
           fontSize: 16,

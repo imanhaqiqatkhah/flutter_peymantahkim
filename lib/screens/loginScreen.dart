@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_peymantahkim/screens/forgot_password_screen.dart';
 import 'package:flutter_peymantahkim/screens/signup_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/custom_text_field.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/screens/loginScreen.dart';
 import 'package:flutter_peymantahkim/screens/signup_screen.dart';
-import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
 class WelcomeScreen extends StatelessWidget {

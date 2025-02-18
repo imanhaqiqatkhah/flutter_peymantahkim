@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_peymantahkim/screens/forgot_password_screen.dart';
 import 'package:flutter_peymantahkim/screens/loginScreen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/custom_text_field.dart';
@@ -122,6 +121,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 16),
                           CustomTextField(
+                            textAlign: TextAlign.start,
                             label: 'نام کامل',
                             prefixIcon: Icons.person_outline,
                             keyboardType: TextInputType.text,
