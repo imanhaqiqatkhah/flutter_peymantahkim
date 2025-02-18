@@ -18,7 +18,7 @@ class AppTheme {
   static const Color textPrimary = Color(0xFF1E293B);
   static const Color textSecondary = Color(0xFF64748B);
 
-  static const Color sucess = Color(0xFF22C55E);
+  static const Color success = Color(0xFF22C55E);
   static const Color error = Color(0xFFEF4444);
   static const Color warning = Color(0xFFF59E0B);
 
@@ -40,7 +40,7 @@ class AppTheme {
         ),
         displayMedium: TextStyle(
           color: textPrimary,
-          fontSize: 24,
+          fontSize: 28,
           fontWeight: FontWeight.bold,
         ),
         bodyLarge: TextStyle(

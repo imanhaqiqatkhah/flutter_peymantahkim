@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/forgot_email_screen.dart';
 import 'package:flutter_peymantahkim/screens/loginScreen.dart';
 import 'package:flutter_peymantahkim/screens/otp_verification_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
@@ -186,45 +187,45 @@ class SignUpScreen extends StatelessWidget {
                             },
                           ),
                           SizedBox(height: 8),
-                          Center(
-                            child: Text(
-                              'یا به روش های زیر وارد شوید',
-                              style: TextStyle(
-                                  color: AppTheme.textSecondary, fontSize: 14),
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: SocialLoginButton(
-                                  text: 'Apple',
-                                  iconPath: './assets/icons/apple.png',
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                OtpVerificationScreen()));
-                                  },
-                                ),
-                              ),
-                              SizedBox(width: 16),
-                              Expanded(
-                                child: SocialLoginButton(
-                                  text: 'Google',
-                                  iconPath: './assets/icons/google.png',
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                OtpVerificationScreen()));
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Center(
+                          //   child: Text(
+                          //     'یا به روش های زیر وارد شوید',
+                          //     style: TextStyle(
+                          //         color: AppTheme.textSecondary, fontSize: 14),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 4),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //       child: SocialLoginButton(
+                          //         text: 'ایمیل',
+                          //         iconPath: Icons.email_outlined,
+                          //         onPressed: () {
+                          //           Navigator.push(
+                          //               context,
+                          //               MaterialPageRoute(
+                          //                   builder: (context) =>
+                          //                       ForgotEmailScreen()));
+                          //         },
+                          //       ),
+                          //     ),
+                          //     SizedBox(width: 16),
+                          //     Expanded(
+                          //       child: SocialLoginButton(
+                          //         text: 'تلفن',
+                          //         iconPath: Icons.phone_outlined,
+                          //         onPressed: () {
+                          //           Navigator.push(
+                          //               context,
+                          //               MaterialPageRoute(
+                          //                   builder: (context) =>
+                          //                       OtpVerificationScreen()));
+                          //         },
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(height: 2),
                           Center(
                             child: Row(

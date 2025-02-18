@@ -3,7 +3,7 @@ import 'package:flutter_peymantahkim/theme/theme.dart';
 
 class SocialLoginButton extends StatelessWidget {
   final String text;
-  final String iconPath;
+  final IconData iconPath;
   final VoidCallback onPressed;
   final Color? backgroundColor;
   final Color? textColor;
@@ -48,12 +48,11 @@ class SocialLoginButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
+                Icon(
                   iconPath,
-                  height: 24,
-                  width: 24,
+                  size: 16,
                 ),
-                SizedBox(width: 12),
+                SizedBox(width: 10),
                 Text(
                   text,
                   style: TextStyle(

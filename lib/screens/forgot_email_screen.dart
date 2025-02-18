@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/otp_verification_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/custom_text_field.dart';
 import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+class ForgotEmailScreen extends StatefulWidget {
+  const ForgotEmailScreen({super.key});
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<ForgotEmailScreen> createState() => _ForgotEmailScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _recoveryStarted = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,15 +38,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'آیا رمز عبور خود را فراموش کردید؟',
-                  style: Theme.of(context).textTheme.displayMedium,
+                  'آیا رمز عبور را فراموش کردید؟',
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'ایمیل خود را وارد کنید تا رمز عبور را بازیابی کنیم',
+                  'شماره تلفن خود را وارد کنید تا رمز عبور را بازیابی کنیم',
                   style: TextStyle(
                     color: AppTheme.textSecondary,
-                    fontSize: 14,
+                    fontSize: 16,
                   ),
                 ),
                 SizedBox(height: 48),
@@ -54,27 +56,29 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: Column(
                       children: [
                         CustomTextField(
-                          label: 'ایمیل',
-                          prefixIcon: Icons.email_outlined,
-                          keyboardType: TextInputType.emailAddress,
+                          label: 'شماره تلفن',
+                          prefixIcon: Icons.phone_outlined,
+                          keyboardType: TextInputType.phone,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'لطفا ایمیل خود را وارد کنید';
-                            }
-                            if (!value.contains('@')) {
-                              return 'لطفا ایمیل خود را درست وارد کنید';
+                              return 'لطفا شماره تلفن خود را وارد کنید';
                             }
                             return null;
                           },
                         ),
                         SizedBox(height: 24),
                         GradientButton(
-                          text: 'بازیابی رمز عبور',
+                          text: 'انجام',
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               setState(
                                 () {
-                                  _recoveryStarted = true;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              OtpVerificationScreen()));
+                                  // _recoveryStarted = true;
                                 },
                               );
                             }
@@ -116,7 +120,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                         SizedBox(height: 24),
                         Text(
-                          'بازیابی با ایمیل',
+                          'بازیابی با پیامک',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -124,7 +128,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'ما لینک بازیابی رمز عبور را به ایمیل شما ارسال کردیم، لطفا آن را بررسی کنید ',
+                          'ما آدرس ایمیل را به شماره تلفن شماارسال کردیم، لطفا پیامک خود را بررسی کنید',
                           style: TextStyle(
                             color: AppTheme.textSecondary,
                             fontSize: 16,
@@ -134,9 +138,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         ),
                         SizedBox(height: 32),
                         GradientButton(
-                            text: 'باز کردن ایمیل',
+                            text: 'باز کردن پیام',
                             onPressed: () {
-                              // optional if you want to open your email app from here,
+                              // optional if you want to open your message app from here,
                               // you can remove this, if you don't needed,
                             }),
                         SizedBox(height: 16),

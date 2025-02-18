@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/forgot_email_screen.dart';
+import 'package:flutter_peymantahkim/screens/forgot_password_screen.dart';
 import 'package:flutter_peymantahkim/screens/otp_verification_screen.dart';
 import 'package:flutter_peymantahkim/screens/signup_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
@@ -151,17 +153,6 @@ class LoginScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: TextButton(
-                              onPressed: () {
-                                // Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPasswordScreen()));
-                              },
-                              style: TextButton.styleFrom(
-                                  foregroundColor: AppTheme.primaryColor),
-                              child: Text('رمز عبور را فراموش کردید؟'),
-                            ),
-                          ),
                           SizedBox(height: 10),
                           GradientButton(
                             text: 'ورود',
@@ -170,40 +161,58 @@ class LoginScreen extends StatelessWidget {
                             },
                           ),
                           SizedBox(height: 12),
+
                           Center(
                             child: Text(
-                              'یا به روش های زیر وارد شوید',
+                              'در صورت فراموشی میتوانید به روش های زیر بازیابی کنید',
                               style: TextStyle(
                                   color: AppTheme.textSecondary, fontSize: 14),
                             ),
                           ),
                           SizedBox(height: 12),
+                          // Align(
+                          //   alignment: Alignment.center,
+                          //   child: TextButton(
+                          // onPressed: () {
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //               ForgotPasswordScreen()));
+                          // },
+                          //     style: TextButton.styleFrom(
+                          //         foregroundColor: AppTheme.primaryColor),
+                          //     child: Text('رمز عبور را فراموش کردید؟'),
+                          //   ),
+                          // ),
                           Row(
                             children: [
                               Expanded(
                                 child: SocialLoginButton(
-                                  text: 'Apple',
-                                  iconPath: './assets/icons/apple.png',
+                                  text: 'ایمیل',
+                                  iconPath: Icons.email_outlined,
                                   onPressed: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                OtpVerificationScreen()));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ForgotPasswordScreen(),
+                                      ),
+                                    );
                                   },
                                 ),
                               ),
                               SizedBox(width: 16),
                               Expanded(
                                 child: SocialLoginButton(
-                                  text: 'Google',
-                                  iconPath: './assets/icons/google.png',
+                                  text: 'تلفن',
+                                  iconPath: Icons.phone_outlined,
                                   onPressed: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                OtpVerificationScreen()));
+                                                ForgotEmailScreen()));
                                   },
                                 ),
                               ),

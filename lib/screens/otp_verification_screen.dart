@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_peymantahkim/screens/loginScreen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
@@ -70,6 +71,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+  bool _recoveryStarted = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,104 +111,177 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   ),
                 ),
                 SizedBox(height: 48),
-                Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(
-                      otpLength,
-                      (index) => SizedBox(
-                        width: 50,
-                        child: TextField(
-                          controller: _controllers[index],
-                          focusNode: _focusNodes[index],
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.number,
-                          maxLength: 1,
-                          style: TextStyle(fontSize: 24),
-                          decoration: InputDecoration(
-                            counterText: '',
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                color: AppTheme.textSecondary.withOpacity(0.3),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                color: AppTheme.primaryColor,
-                                width: 2,
+                if (!_recoveryStarted)
+                  Form(
+                    key: _formKey,
+                    child: Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: List.generate(
+                              otpLength,
+                              (index) => SizedBox(
+                                width: 50,
+                                child: TextField(
+                                  controller: _controllers[index],
+                                  focusNode: _focusNodes[index],
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 1,
+                                  style: TextStyle(fontSize: 24),
+                                  decoration: InputDecoration(
+                                    counterText: '',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: AppTheme.textSecondary
+                                            .withOpacity(0.3),
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(
+                                        color: AppTheme.primaryColor,
+                                        width: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      if (index < otpLength - 1) {
+                                        _focusNodes[index + 1].requestFocus();
+                                      } else {
+                                        _focusNodes[index].unfocus();
+                                        // _verifyOTP();
+                                      }
+                                    } else if (index > 0) {
+                                      _focusNodes[index - 1].requestFocus();
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                           ),
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              if (index < otpLength - 1) {
-                                _focusNodes[index + 1].requestFocus();
-                              } else {
-                                _focusNodes[index].unfocus();
-                                // _verifyOTP();
+                          SizedBox(height: 32),
+                          GradientButton(
+                            text: _isVerifying ? 'در حال انجام...' : 'انجام',
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                setState(
+                                  () {
+                                    _recoveryStarted = true;
+                                  },
+                                );
                               }
-                            } else if (index > 0) {
-                              _focusNodes[index - 1].requestFocus();
-                            }
-                          },
-                        ),
+                            },
+                          ),
+                          SizedBox(height: 24),
+                          Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                  'آیا کدی دریافت نکردید؟',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppTheme.textSecondary,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                TextButton(
+                                  onPressed: _canResend
+                                      ? () {
+                                          setState(() {
+                                            _canResend = false;
+                                            _resendTimer = 30;
+                                          });
+                                          _startResendTimer();
+                                        }
+                                      : null,
+                                  child: Text(
+                                    _canResend
+                                        ? 'ارسال مجدد'
+                                        : 'مجددا کد ارسال میشود در ${_resendTimer} ثانیه',
+                                    style: TextStyle(
+                                      color: _canResend
+                                          ? AppTheme.primaryColor
+                                          : AppTheme.textSecondary,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 32),
-                GradientButton(
-                  text: _isVerifying ? 'در حال انجام...' : 'انجام',
-                  onPressed: () {
-                    if (!_isVerifying) {
-                      _verifyOTP();
-                    }
-                  },
-                ),
-                SizedBox(height: 24),
-                Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'آیا کدی دریافت نکردید؟',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppTheme.textSecondary,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      TextButton(
-                        onPressed: _canResend
-                            ? () {
-                                setState(() {
-                                  _canResend = false;
-                                  _resendTimer = 30;
-                                });
-                                _startResendTimer();
-                              }
-                            : null,
-                        child: Text(
-                          _canResend
-                              ? 'ارسال مجدد'
-                              : 'مجددا کد ارسال میشود در ${_resendTimer} ثانیه',
-                          style: TextStyle(
-                            color: _canResend
-                                ? AppTheme.primaryColor
-                                : AppTheme.textSecondary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                  )
+                else
+                  Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                              color: AppTheme.success.withOpacity(0.1),
+                              shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.check_circle_outline,
+                            size: 40,
+                            color: AppTheme.success,
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 24),
+                        Text(
+                          'بازیابی با پیامک',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'ما رمز عبور را به شماره تلفن شماارسال کردیم، لطفا پیامک خود را بررسی کنید',
+                          style: TextStyle(
+                            color: AppTheme.textSecondary,
+                            fontSize: 16,
+                            height: 1.5,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 32),
+                        GradientButton(
+                            text: 'باز کردن پیام',
+                            onPressed: () {
+                              // optional if you want to open your message app from here,
+                              // you can remove this, if you don't needed,
+                            }),
+                        SizedBox(height: 16),
+                        TextButton(
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen())),
+                          child: Text(
+                            'ورود',
+                            style: TextStyle(
+                              color: AppTheme.primaryColor,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           ),
