@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/otp_verification_screen.dart';
 import 'package:flutter_peymantahkim/screens/signup_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/widgets/custom_text_field.dart';
@@ -183,7 +184,13 @@ class LoginScreen extends StatelessWidget {
                                 child: SocialLoginButton(
                                   text: 'Apple',
                                   iconPath: './assets/icons/apple.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OtpVerificationScreen()));
+                                  },
                                 ),
                               ),
                               SizedBox(width: 16),
@@ -191,7 +198,13 @@ class LoginScreen extends StatelessWidget {
                                 child: SocialLoginButton(
                                   text: 'Google',
                                   iconPath: './assets/icons/google.png',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OtpVerificationScreen()));
+                                  },
                                 ),
                               ),
                             ],
