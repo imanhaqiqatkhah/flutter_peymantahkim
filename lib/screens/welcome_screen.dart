@@ -48,9 +48,10 @@ class WelcomeScreen extends StatelessWidget {
                           'شرکت دانش بنیان مهندسی \nپیمان تحکیم خوزستان',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 23,
                             fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         )
                       ],
                     ),
@@ -59,12 +60,12 @@ class WelcomeScreen extends StatelessWidget {
                     Text(
                       'دارای\n دفتر فنی و مهندسی',
                       style: TextStyle(
-                        fontSize: 36,
+                        fontSize: 42,
                         color: Colors.white,
                         height: 1.2,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 5),
                     Text(
                       'جزء بالاترین رتبه شرکت های دانش بنیان ایران',
                       style: TextStyle(
@@ -73,7 +74,7 @@ class WelcomeScreen extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
-                    SizedBox(height: 48),
+                    SizedBox(height: 34),
                     GradientButton(
                       text: 'ثبت نام',
                       onPressed: () {
@@ -85,39 +86,38 @@ class WelcomeScreen extends StatelessWidget {
                         );
                       },
                     ),
-                    SizedBox(height: 6),
+                    // SizedBox(height: 6),
                     SizedBox(height: 14),
                     SizedBox(
                       width: double.infinity,
                       child: TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.symmetric(vertical: 16),
-                            side: BorderSide(
-                              color: Colors.white,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          side: BorderSide(
+                            color: Colors.white,
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'ورود',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          )),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'ورود',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: 48,
-                    )
+                    SizedBox(height: 36),
                   ],
                 ),
               ),

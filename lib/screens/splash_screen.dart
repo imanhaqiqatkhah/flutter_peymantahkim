@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/choose_language_screen.dart';
 import 'package:flutter_peymantahkim/screens/onboarding_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 
@@ -50,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => OnboardingScreen(),
+                builder: (context) => ChooseLanguageScreen(),
               ));
         }
       },
