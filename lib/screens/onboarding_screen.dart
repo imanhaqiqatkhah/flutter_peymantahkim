@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             right: 24,
             child: TextButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => WelcomeScreen(),
@@ -141,7 +141,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               curve: Curves.easeInOut,
                             );
                           } else {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => WelcomeScreen(),

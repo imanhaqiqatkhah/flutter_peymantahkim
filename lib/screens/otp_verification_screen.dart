@@ -47,18 +47,18 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     );
   }
 
-  void _verifyOTP() {
-    String otp = _controllers.map((controller) => controller.text).join();
-    if (otp.length == otpLength) {
-      setState(() => _isVerifying = true);
-      Future.delayed(
-        Duration(seconds: 2),
-        () {
-          if (!mounted) return;
-        },
-      );
-    }
-  }
+  // void _verifyOTP() {
+  //   String otp = _controllers.map((controller) => controller.text).join();
+  //   if (otp.length == otpLength) {
+  //     setState(() => _isVerifying = true);
+  //     Future.delayed(
+  //       Duration(seconds: 2),
+  //       () {
+  //         if (!mounted) return;
+  //       },
+  //      );
+  //    }
+  // }
 
   @override
   void dispose() {
@@ -279,7 +279,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                 }),
                             SizedBox(height: 16),
                             TextButton(
-                              onPressed: () => Navigator.push(
+                              onPressed: () => Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => LoginScreen())),

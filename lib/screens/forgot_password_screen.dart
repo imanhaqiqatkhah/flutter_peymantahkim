@@ -140,16 +140,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                               // you can remove this, if you don't needed,
                             }),
                         SizedBox(height: 16),
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: Text(
-                            'برگشت به قبل',
-                            style: TextStyle(
-                              color: AppTheme.primaryColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),

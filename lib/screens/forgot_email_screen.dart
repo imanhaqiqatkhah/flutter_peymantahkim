@@ -73,7 +73,7 @@ class _ForgotEmailScreenState extends State<ForgotEmailScreen> {
                             if (_formKey.currentState!.validate()) {
                               setState(
                                 () {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
