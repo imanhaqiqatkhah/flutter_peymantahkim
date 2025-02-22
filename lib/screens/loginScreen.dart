@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/screens/forgot_email_screen.dart';
 import 'package:flutter_peymantahkim/screens/forgot_password_screen.dart';
+import 'package:flutter_peymantahkim/screens/main_screen.dart';
 import 'package:flutter_peymantahkim/screens/otp_verification_screen.dart';
 import 'package:flutter_peymantahkim/screens/signup_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
@@ -157,7 +158,12 @@ class LoginScreen extends StatelessWidget {
                           GradientButton(
                             text: 'ورود',
                             onPressed: () {
-                              if (_formKey.currentState!.validate()) {}
+                              // if (_formKey.currentState!.validate()) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MainScreen()));
+                              // }
                             },
                           ),
                           SizedBox(height: 12),
