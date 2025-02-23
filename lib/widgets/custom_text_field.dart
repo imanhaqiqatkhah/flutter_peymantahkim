@@ -52,7 +52,7 @@ class CustomTextField extends StatelessWidget {
           labelText: label,
           labelStyle: TextStyle(
             color: AppTheme.textSecondary,
-            fontSize: 12,
+            fontSize: 16,
           ),
           prefixIcon: Icon(
             prefixIcon,
