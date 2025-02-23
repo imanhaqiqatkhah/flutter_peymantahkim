@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 30,
+                        top: 50,
                         left: 16,
                         right: 16,
                         child: Row(
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                                   'خوش آمدید',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 24,
+                                    fontSize: 32,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.13,
+                top: MediaQuery.of(context).size.height * 0.2,
                 left: 24,
                 right: 24,
                 child: Container(
@@ -113,17 +113,17 @@ class LoginScreen extends StatelessWidget {
                           Text(
                             'وارد حساب خود شوید',
                             style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: 8),
                           Text(
                             'برای ایجاد درخواست خود، اطلاعات خود را وارد کنید',
                             style: TextStyle(
                                 fontSize: 11, color: AppTheme.textSecondary),
                           ),
-                          SizedBox(height: 24),
+                          SizedBox(height: 48),
                           CustomTextField(
                             label: 'ایمیل',
                             prefixIcon: Icons.email_outlined,
@@ -138,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: 8),
                           CustomTextField(
                             label: 'رمز عبور',
                             prefixIcon: Icons.lock_outline,
@@ -154,7 +154,7 @@ class LoginScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 16),
                           GradientButton(
                             text: 'ورود',
                             onPressed: () {
@@ -166,7 +166,7 @@ class LoginScreen extends StatelessWidget {
                               // }
                             },
                           ),
-                          SizedBox(height: 12),
+                          SizedBox(height: 18),
 
                           Center(
                             child: Text(
@@ -175,7 +175,7 @@ class LoginScreen extends StatelessWidget {
                                   color: AppTheme.textSecondary, fontSize: 14),
                             ),
                           ),
-                          SizedBox(height: 12),
+                          SizedBox(height: 18),
                           // Align(
                           //   alignment: Alignment.center,
                           //   child: TextButton(
@@ -224,7 +224,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 8),
+                          SizedBox(height: 16),
                           Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

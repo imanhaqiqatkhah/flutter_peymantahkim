@@ -51,7 +51,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 30,
+                        top: 50,
                         left: 16,
                         right: 16,
                         child: Row(
@@ -69,7 +69,7 @@ class SignUpScreen extends StatelessWidget {
                                   'ایجاد حساب',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 24,
+                                    fontSize: 32,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -84,7 +84,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.13,
+                top: MediaQuery.of(context).size.height * 0.2,
                 left: 24,
                 right: 24,
                 child: Container(
@@ -111,17 +111,17 @@ class SignUpScreen extends StatelessWidget {
                           Text(
                             'حساب خود را ایجاد کنید',
                             style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: 8),
                           Text(
                             'برای ایجاد حساب خود، اطلاعات خود را وارد کنید',
                             style: TextStyle(
                                 fontSize: 11, color: AppTheme.textSecondary),
                           ),
-                          SizedBox(height: 16),
+                          SizedBox(height: 32),
                           CustomTextField(
                             textAlign: TextAlign.start,
                             label: 'نام کامل',
@@ -149,7 +149,7 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          // SizedBox(height: 4),
+                          SizedBox(height: 4),
                           CustomTextField(
                             label: 'رمز عبور',
                             prefixIcon: Icons.lock_outline,
@@ -165,7 +165,7 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          // SizedBox(height: 10),
+                          SizedBox(height: 10),
                           CustomTextField(
                             label: 'تکرار رمز عبور',
                             prefixIcon: Icons.lock_outline,
@@ -179,14 +179,14 @@ class SignUpScreen extends StatelessWidget {
                               return null;
                             },
                           ),
-                          // SizedBox(height: 10),
+                          SizedBox(height: 10),
                           GradientButton(
                             text: 'ثبت نام',
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {}
                             },
                           ),
-                          SizedBox(height: 8),
+                          SizedBox(height: 12),
                           // Center(
                           //   child: Text(
                           //     'یا به روش های زیر وارد شوید',
@@ -226,7 +226,7 @@ class SignUpScreen extends StatelessWidget {
                           //     ),
                           //   ],
                           // ),
-                          SizedBox(height: 2),
+                          SizedBox(height: 8),
                           Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
