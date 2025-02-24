@@ -143,7 +143,7 @@ class LoginScreen extends StatelessWidget {
                         CustomTextField(
                           label: 'رمز عبور',
                           prefixIcon: Icons.lock_outline,
-                          // keyboardType: TextInputType.visiblePassword,
+                          keyboardType: TextInputType.visiblePassword,
                           isPassword: true,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -171,7 +171,7 @@ class LoginScreen extends StatelessWidget {
 
                         Center(
                           child: Text(
-                            'در صورت فراموشی رمز عبور، به این روش ها بازیابی کنید',
+                            'رمز عبور را فراموش کردید؟ کلیک کنید',
                             style: TextStyle(
                                 color: AppTheme.primaryColor, fontSize: 15),
                           ),
