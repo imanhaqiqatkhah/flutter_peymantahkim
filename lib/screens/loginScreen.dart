@@ -98,162 +98,161 @@ class LoginScreen extends StatelessWidget {
                       BoxShadow(
                         color: Colors.black.withOpacity(0.1),
                         blurRadius: 20,
-                        offset: Offset(0, 10),
+                        offset: Offset(
+                          0,
+                          10,
+                        ),
                       ),
                     ],
                   ),
                   child: Directionality(
                     textDirection: TextDirection.rtl,
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'وارد حساب خود شوید',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'وارد حساب خود شوید',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            'برای ایجاد درخواست خود، اطلاعات خود را وارد کنید',
-                            style: TextStyle(
-                                fontSize: 11, color: AppTheme.textSecondary),
-                          ),
-                          SizedBox(height: 48),
-                          CustomTextField(
-                            label: 'ایمیل',
-                            prefixIcon: Icons.email_outlined,
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'لطفا ایمیل خود را وارد کنید';
-                              }
-                              if (!value.contains('@')) {
-                                return 'لطفا ایمیل را درست وارد کنید';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 8),
-                          CustomTextField(
-                            label: 'رمز عبور',
-                            prefixIcon: Icons.lock_outline,
-                            keyboardType: TextInputType.visiblePassword,
-                            isPassword: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'لطفا رمز عبور خود را وارد کنید';
-                              }
-                              if (value.length < 6) {
-                                return 'رمز عبور باید بیشتر از 6 رقم باشد';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 16),
-                          GradientButton(
-                            text: 'ورود',
-                            onPressed: () {
-                              // if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => MainScreen()));
-                              // }
-                            },
-                          ),
-                          SizedBox(height: 18),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'برای ایجاد درخواست خود، اطلاعات خود را وارد کنید',
+                          style: TextStyle(
+                              fontSize: 11, color: AppTheme.textSecondary),
+                        ),
+                        SizedBox(height: 48),
+                        CustomTextField(
+                          label: 'ایمیل',
+                          prefixIcon: Icons.email_outlined,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'لطفا ایمیل خود را وارد کنید';
+                            }
+                            if (!value.contains('@')) {
+                              return 'لطفا ایمیل را درست وارد کنید';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 8),
+                        CustomTextField(
+                          label: 'رمز عبور',
+                          prefixIcon: Icons.lock_outline,
+                          // keyboardType: TextInputType.visiblePassword,
+                          isPassword: true,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'لطفا رمز عبور خود را وارد کنید';
+                            }
+                            if (value.length < 6) {
+                              return 'رمز عبور باید بیشتر از 6 رقم باشد';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        GradientButton(
+                          text: 'ورود',
+                          onPressed: () {
+                            // if (_formKey.currentState!.validate()) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MainScreen()));
+                            // }
+                          },
+                        ),
+                        SizedBox(height: 18),
 
-                          Center(
-                            child: Text(
-                              'در صورت فراموشی میتوانید به روش های زیر بازیابی کنید',
-                              style: TextStyle(
-                                  color: AppTheme.textSecondary, fontSize: 14),
-                            ),
+                        Center(
+                          child: Text(
+                            'در صورت فراموشی رمز عبور، به این روش ها بازیابی کنید',
+                            style: TextStyle(
+                                color: AppTheme.primaryColor, fontSize: 15),
                           ),
-                          SizedBox(height: 18),
-                          // Align(
-                          //   alignment: Alignment.center,
-                          //   child: TextButton(
-                          // onPressed: () {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) =>
-                          //               ForgotPasswordScreen()));
-                          // },
-                          //     style: TextButton.styleFrom(
-                          //         foregroundColor: AppTheme.primaryColor),
-                          //     child: Text('رمز عبور را فراموش کردید؟'),
-                          //   ),
-                          // ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: SocialLoginButton(
-                                  text: 'ایمیل',
-                                  iconPath: Icons.email_outlined,
-                                  onPressed: () {
-                                    Navigator.push(
+                        ),
+                        SizedBox(height: 18),
+                        // Align(
+                        //   alignment: Alignment.center,
+                        //   child: TextButton(
+                        // onPressed: () {
+                        //   Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //           builder: (context) =>
+                        //               ForgotPasswordScreen()));
+                        // },
+                        //     style: TextButton.styleFrom(
+                        //         foregroundColor: AppTheme.primaryColor),
+                        //     child: Text('رمز عبور را فراموش کردید؟'),
+                        //   ),
+                        // ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: SocialLoginButton(
+                                text: 'ایمیل',
+                                iconPath: Icons.email_outlined,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ForgotPasswordScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Expanded(
+                              child: SocialLoginButton(
+                                text: 'تلفن',
+                                iconPath: Icons.phone_outlined,
+                                onPressed: () {
+                                  Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            ForgotPasswordScreen(),
-                                      ),
-                                    );
-                                  },
+                                          builder: (context) =>
+                                              ForgotEmailScreen()));
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'آیا اکانت ندارید؟',
+                                style: TextStyle(
+                                  color: AppTheme.textSecondary,
                                 ),
                               ),
-                              SizedBox(width: 16),
-                              Expanded(
-                                child: SocialLoginButton(
-                                  text: 'تلفن',
-                                  iconPath: Icons.phone_outlined,
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ForgotEmailScreen()));
-                                  },
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SignUpScreen()));
+                                },
+                                child: Text(
+                                  'ثبت نام',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 16),
-                          Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'آیا اکانت ندارید؟',
-                                  style: TextStyle(
-                                    color: AppTheme.textSecondary,
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignUpScreen()));
-                                  },
-                                  child: Text(
-                                    'ثبت نام',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   ),
                 ),

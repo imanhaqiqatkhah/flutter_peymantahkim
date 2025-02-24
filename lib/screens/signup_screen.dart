@@ -102,160 +102,159 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   child: Directionality(
                     textDirection: TextDirection.rtl,
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'حساب خود را ایجاد کنید',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'حساب خود را ایجاد کنید',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'برای ایجاد حساب خود، اطلاعات خود را وارد کنید',
+                          style: TextStyle(
+                              fontSize: 11, color: AppTheme.textSecondary),
+                        ),
+                        SizedBox(height: 32),
+                        Column(
+                          children: [
+                            CustomTextField(
+                              textAlign: TextAlign.start,
+                              label: 'نام کامل',
+                              prefixIcon: Icons.person_outline,
+                              keyboardType: TextInputType.text,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'لطفا نام خود را وارد کنید';
+                                }
+                                return null;
+                              },
                             ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'برای ایجاد حساب خود، اطلاعات خود را وارد کنید',
-                            style: TextStyle(
-                                fontSize: 11, color: AppTheme.textSecondary),
-                          ),
-                          SizedBox(height: 32),
-                          CustomTextField(
-                            textAlign: TextAlign.start,
-                            label: 'نام کامل',
-                            prefixIcon: Icons.person_outline,
-                            keyboardType: TextInputType.text,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'لطفا نام خود را وارد کنید';
-                              }
-                              return null;
-                            },
-                          ),
-                          // SizedBox(height: 4),
-                          CustomTextField(
-                            label: 'ایمیل',
-                            prefixIcon: Icons.email_outlined,
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'لطفا ایمیل خود را وارد کنید';
-                              }
-                              if (!value.contains('@')) {
-                                return 'لطفا ایمیل را درست وارد کنید';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 4),
-                          CustomTextField(
-                            label: 'رمز عبور',
-                            prefixIcon: Icons.lock_outline,
-                            keyboardType: TextInputType.visiblePassword,
-                            isPassword: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'لطفا رمز عبور خود را وارد کنید';
-                              }
-                              if (value.length < 6) {
-                                return 'رمز عبور باید بیشتر از 6 رقم باشد';
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 10),
-                          CustomTextField(
-                            label: 'تکرار رمز عبور',
-                            prefixIcon: Icons.lock_outline,
-                            keyboardType: TextInputType.visiblePassword,
-                            isPassword: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'لطفا تکرار رمز عبور خود را وارد کنید';
-                              }
+                            // SizedBox(height: 4),
+                            CustomTextField(
+                              label: 'ایمیل',
+                              prefixIcon: Icons.email_outlined,
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'لطفا ایمیل خود را وارد کنید';
+                                }
+                                if (!value.contains('@')) {
+                                  return 'لطفا ایمیل را درست وارد کنید';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 4),
+                            CustomTextField(
+                              label: 'رمز عبور',
+                              prefixIcon: Icons.lock_outline,
+                              keyboardType: TextInputType.visiblePassword,
+                              isPassword: true,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'لطفا رمز عبور خود را وارد کنید';
+                                }
+                                if (value.length < 6) {
+                                  return 'رمز عبور باید بیشتر از 6 رقم باشد';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 10),
+                            CustomTextField(
+                              label: 'تکرار رمز عبور',
+                              prefixIcon: Icons.lock_outline,
+                              keyboardType: TextInputType.visiblePassword,
+                              isPassword: true,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'لطفا تکرار رمز عبور خود را وارد کنید';
+                                }
 
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 10),
-                          GradientButton(
-                            text: 'ثبت نام',
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {}
-                            },
-                          ),
-                          SizedBox(height: 12),
-                          // Center(
-                          //   child: Text(
-                          //     'یا به روش های زیر وارد شوید',
-                          //     style: TextStyle(
-                          //         color: AppTheme.textSecondary, fontSize: 14),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 4),
-                          // Row(
-                          //   children: [
-                          //     Expanded(
-                          //       child: SocialLoginButton(
-                          //         text: 'ایمیل',
-                          //         iconPath: Icons.email_outlined,
-                          //         onPressed: () {
-                          //           Navigator.push(
-                          //               context,
-                          //               MaterialPageRoute(
-                          //                   builder: (context) =>
-                          //                       ForgotEmailScreen()));
-                          //         },
-                          //       ),
-                          //     ),
-                          //     SizedBox(width: 16),
-                          //     Expanded(
-                          //       child: SocialLoginButton(
-                          //         text: 'تلفن',
-                          //         iconPath: Icons.phone_outlined,
-                          //         onPressed: () {
-                          //           Navigator.push(
-                          //               context,
-                          //               MaterialPageRoute(
-                          //                   builder: (context) =>
-                          //                       OtpVerificationScreen()));
-                          //         },
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                          SizedBox(height: 8),
-                          Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'آیا اکانت دارید؟',
-                                  style: TextStyle(
-                                    color: AppTheme.textSecondary,
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                LoginScreen()));
-                                  },
-                                  child: Text(
-                                    'ورود',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ],
+                                return null;
+                              },
                             ),
-                          )
-                        ],
-                      ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        GradientButton(
+                          text: 'ثبت نام',
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {}
+                          },
+                        ),
+                        SizedBox(height: 12),
+                        // Center(
+                        //   child: Text(
+                        //     'یا به روش های زیر وارد شوید',
+                        //     style: TextStyle(
+                        //         color: AppTheme.textSecondary, fontSize: 14),
+                        //   ),
+                        // ),
+                        // SizedBox(height: 4),
+                        // Row(
+                        //   children: [
+                        //     Expanded(
+                        //       child: SocialLoginButton(
+                        //         text: 'ایمیل',
+                        //         iconPath: Icons.email_outlined,
+                        //         onPressed: () {
+                        //           Navigator.push(
+                        //               context,
+                        //               MaterialPageRoute(
+                        //                   builder: (context) =>
+                        //                       ForgotEmailScreen()));
+                        //         },
+                        //       ),
+                        //     ),
+                        //     SizedBox(width: 16),
+                        //     Expanded(
+                        //       child: SocialLoginButton(
+                        //         text: 'تلفن',
+                        //         iconPath: Icons.phone_outlined,
+                        //         onPressed: () {
+                        //           Navigator.push(
+                        //               context,
+                        //               MaterialPageRoute(
+                        //                   builder: (context) =>
+                        //                       OtpVerificationScreen()));
+                        //         },
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                        SizedBox(height: 8),
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'آیا اکانت دارید؟',
+                                style: TextStyle(
+                                  color: AppTheme.textSecondary,
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen()));
+                                },
+                                child: Text(
+                                  'ورود',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
