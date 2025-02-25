@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/screens/product_details_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -292,11 +293,11 @@ class HomeScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             ProductDetailsScreen()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ProductDetailsScreen()));
                               },
                               child: Container(
                                 width: 200,
