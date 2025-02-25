@@ -228,68 +228,125 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.success.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Row(
-                                  textDirection: TextDirection.rtl,
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      size: 16,
-                                      color: AppTheme.success,
-                                    ),
-                                    SizedBox(width: 4),
-                                    Text(
-                                      '4.8',
-                                      style: TextStyle(
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppTheme.success.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Row(
+                                    textDirection: TextDirection.ltr,
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        size: 16,
                                         color: AppTheme.success,
-                                        fontWeight: FontWeight.bold,
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                '(245 Reviews)',
-                                style: TextStyle(
-                                  color: AppTheme.textSecondary,
-                                ),
-                              ),
-                              Spacer(),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.error.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  '20% OFF',
-                                  style: TextStyle(
-                                    color: AppTheme.error,
-                                    fontWeight: FontWeight.bold,
+                                      SizedBox(width: 4),
+                                      Text(
+                                        '4.8',
+                                        style: TextStyle(
+                                          color: AppTheme.success,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
+                                SizedBox(width: 8),
+                                Text(
+                                  '(245 بازدید)',
+                                  style: TextStyle(
+                                    color: AppTheme.textSecondary,
+                                  ),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: AppTheme.error.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Text(
+                                    '20% تخفیف',
+                                    style: TextStyle(
+                                      color: AppTheme.error,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 12),
+                            Text(
+                              'تجهیز تعمیر شده توسط شرکت',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: AppTheme.textPrimary,
                               ),
-                            ],
-                          ),
-                          SizedBox(height: 12),
-                        ],
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'با نام پیمان تحکیم',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: AppTheme.textSecondary,
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Row(
+                              children: [
+                                Text(
+                                  'تعمیر تجیز',
+                                  style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppTheme.primaryColor,
+                                  ),
+                                ),
+                                SizedBox(width: 56),
+                                Text(
+                                  'در کمترین ترین زمان',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    decoration: TextDecoration.underline,
+                                    decorationStyle: TextDecorationStyle.dotted,
+                                    color:
+                                        AppTheme.textSecondary.withOpacity(0.5),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'برای موارد بیشتر کلیک کنید',
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
