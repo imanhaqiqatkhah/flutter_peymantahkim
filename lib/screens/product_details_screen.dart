@@ -11,6 +11,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int _selectedImageIndex = 0;
   int _selectedSize = 1;
+  int _selectedSize2 = 1;
   int _selectedColor = 0;
   bool _isFavorite = false;
 
@@ -24,13 +25,46 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   ];
 
   Widget _buildSizeOption(int index) {
-    final sizes = ['XS', 'S', 'M', 'L', 'XL'];
+    final sizes = ['تامین', 'تعمیر', 'تولید'];
     final isSelected = _selectedSize == index;
 
     return GestureDetector(
       onTap: () => setState(() => _selectedSize = index),
       child: Container(
-        width: 56,
+        width: 80,
+        margin: EdgeInsets.only(right: 12),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        decoration: BoxDecoration(
+          color: isSelected ? AppTheme.primaryColor : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isSelected
+                ? AppTheme.primaryColor
+                : AppTheme.textSecondary.withOpacity(0.3),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            sizes[index],
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: isSelected ? Colors.white : AppTheme.textPrimary,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSizeOption2(int index) {
+    final sizes = ['فوری', '1 ماه', 'سه ماه'];
+    final isSelected = _selectedSize2 == index;
+
+    return GestureDetector(
+      onTap: () => setState(() => _selectedSize2 = index),
+      child: Container(
+        width: 80,
         margin: EdgeInsets.only(right: 12),
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
@@ -165,71 +199,73 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
               SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        AspectRatio(
-                          aspectRatio: 1,
-                          child: PageView.builder(
-                            controller: _pageController,
-                            onPageChanged: (index) {
-                              setState(() {
-                                _selectedImageIndex = index;
-                              });
-                            },
-                            itemCount: images.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.primaryColor.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(26),
-                                    child: Image.asset(
-                                      images[index],
-                                      fit: BoxFit.cover,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: PageView.builder(
+                              controller: _pageController,
+                              onPageChanged: (index) {
+                                setState(() {
+                                  _selectedImageIndex = index;
+                                });
+                              },
+                              itemCount: images.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        AppTheme.primaryColor.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(26),
+                                      child: Image.asset(
+                                        images[index],
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 32,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                              images.length,
-                              (index) => Container(
-                                width: 8,
-                                height: 8,
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: _selectedImageIndex == index
-                                      ? AppTheme.primaryColor
-                                      : AppTheme.textSecondary.withOpacity(0.3),
+                          Positioned(
+                            bottom: 32,
+                            left: 0,
+                            right: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: List.generate(
+                                images.length,
+                                (index) => Container(
+                                  width: 8,
+                                  height: 8,
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: _selectedImageIndex == index
+                                        ? AppTheme.primaryColor
+                                        : AppTheme.textSecondary
+                                            .withOpacity(0.3),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -281,7 +317,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Text(
-                                    '20% تخفیف',
+                                    'تعمیر کامل',
                                     style: TextStyle(
                                       color: AppTheme.error,
                                       fontWeight: FontWeight.bold,
@@ -307,7 +343,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 color: AppTheme.textSecondary,
                               ),
                             ),
-                            SizedBox(height: 16),
+                            SizedBox(height: 8),
                             Row(
                               children: [
                                 Text(
@@ -331,25 +367,135 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'برای موارد بیشتر کلیک کنید',
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'توضیحات کالا',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: AppTheme.textPrimary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                  Text(
+                                      textAlign: TextAlign.justify,
+                                      'رله اوراسپید HUBNER یکی از تجهیزات کلیدی در سیستم‌های کنترلی و حفاظتی صنعتی است که به‌ویژه در ماشین‌آلات حساس و پرسرعت، نقش حیاتی ایفا می‌کند. این رله با طراحی پیشرفته و دقت بالا، به نظارت و کنترل سرعت ماشین‌آلات کمک کرده و از ایجاد آسیب‌های احتمالی به تجهیزات و خطوط تولید جلوگیری می‌کند. قابلیت تنظیم دقیق پارامترها و پاسخ سریع به تغییرات، این رله را به گزینه‌ای ایده‌آل برای صنایع حساس مانند فولاد، سیمان، پتروشیمی و حمل‌ونقل تبدیل کرده است.'),
+                                  SizedBox(height: 16),
+                                  Row(
+                                    children: [
+                                      _buildFeature(
+                                          Icons.verified, 'تضمین کیفیت'),
+                                      _buildFeature(Icons.domain_verification,
+                                          'گارنتی کالا'),
+                                      _buildFeature(Icons.eco, 'تحویل فوری'),
+                                    ],
+                                  ),
+                                  // Text(
+                                  //   'برای درخواست جدید برای خودتان انتخاب کنید',
+                                  //   style: TextStyle(
+                                  //     fontSize: 14,
+                                  //     color: AppTheme.textPrimary,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
+                                  // SizedBox(height: 12),
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceAround,
+                                  //   children: List.generate(
+                                  //     3,
+                                  //     (index) => _buildSizeOption(index),
+                                  //   ),
+                                  // ),
+                                  // SizedBox(height: 20),
+                                  // Text(
+                                  //   'زمان تحویل',
+                                  //   style: TextStyle(
+                                  //     fontSize: 14,
+                                  //     color: AppTheme.textPrimary,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
+                                  // SizedBox(height: 12),
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceAround,
+                                  //   children: List.generate(
+                                  //     3,
+                                  //     (index) => _buildSizeOption2(index),
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'بازدیدهای اخیر',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppTheme.textPrimary,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Text('دیدن همه'),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.05),
+                                      blurRadius: 10,
+                                      offset: Offset(0, 5)),
+                                ],
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: AppTheme.primaryColor,
+                                        child: Text(
+                                          'جدید',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 12),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

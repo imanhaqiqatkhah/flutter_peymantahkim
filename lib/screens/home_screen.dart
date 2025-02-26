@@ -90,6 +90,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+            automaticallyImplyLeading: false,
             actions: [
               IconButton(
                 onPressed: () {},
