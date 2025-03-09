@@ -9,7 +9,6 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.96),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.all(8),
         child: Center(
           child: SizedBox(
@@ -28,7 +27,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'در دنیای سافت فکت همه چیز هست',
+                  'در دنیای پیمان تحکیم همه چیز هست',
                   style: TextStyle(
                       color: Color(0xFF0d120E).withOpacity(0.7),
                       fontSize: 14,
@@ -38,14 +37,14 @@ class LoginScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                     BoxShadow(
-                        blurRadius: 20,
-                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 25,
+                        color: Colors.black.withOpacity(0.15),
                         offset: Offset(0, 5))
                   ]),
                   child: Image.asset(
                     './assets/images/logo.png',
-                    width: 240,
-                    height: 240,
+                    width: 220,
+                    height: 220,
                   ),
                 ),
                 SizedBox(

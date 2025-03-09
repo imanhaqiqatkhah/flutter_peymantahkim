@@ -9,7 +9,6 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.96),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
         padding: EdgeInsets.all(8),
         child: Center(
           child: SizedBox(
@@ -35,17 +34,20 @@ class RegisterScreen extends StatelessWidget {
                       letterSpacing: 0.1),
                   textDirection: TextDirection.rtl,
                 ),
+                SizedBox(
+                  height: 4,
+                ),
                 Container(
                   decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                     BoxShadow(
-                        blurRadius: 20,
-                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 25,
+                        color: Colors.black.withOpacity(0.15),
                         offset: Offset(0, 5))
                   ]),
                   child: Image.asset(
                     './assets/images/logo.png',
-                    width: 240,
-                    height: 240,
+                    width: 220,
+                    height: 220,
                   ),
                 ),
                 SizedBox(

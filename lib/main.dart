@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter SoftFact',
+        title: 'Flutter PeymanTahkim Company',
         theme: ThemeData(
           fontFamily: 'Nazanin',
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
