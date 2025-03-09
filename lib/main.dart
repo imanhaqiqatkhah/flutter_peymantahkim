@@ -11,14 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter PeymanTahkim Company',
-        theme: ThemeData(
-          fontFamily: 'Nazanin',
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: LoginScreen());
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter PeymanTahkim Company',
+      theme: ThemeData(
+        fontFamily: 'Nazanin',
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: LoginScreen(),
+    );
   }
 }
 
