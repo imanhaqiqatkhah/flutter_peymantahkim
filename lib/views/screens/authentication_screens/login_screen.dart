@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/main.dart';
+import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/views/screens/authentication_screens/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -21,8 +22,8 @@ class LoginScreen extends StatelessWidget {
                   'ورود به حساب',
                   style: TextStyle(
                       fontSize: 32,
-                      color: Color(0xFF0d120E),
-                      fontWeight: FontWeight.w600,
+                      color: AppTheme.textPrimary,
+                      fontWeight: FontWeight.bold,
                       letterSpacing: 1),
                   textDirection: TextDirection.rtl,
                 ),
@@ -30,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'به دنیای پیمان تحکیم خوش آمدید',
                   style: TextStyle(
-                      color: Color(0xFF0d120E).withOpacity(0.7),
+                      color: AppTheme.textSecondary,
                       fontSize: 14,
                       letterSpacing: 0.1),
                   textDirection: TextDirection.rtl,
@@ -48,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                     ],
                   ),
                   child: Image.asset(
-                    './assets/images/logo.png',
+                    './assets/images/logo_light.png',
                     width: 220,
                     height: 220,
                   ),
@@ -67,7 +68,9 @@ class LoginScreen extends StatelessWidget {
                           child: Text(
                             'ایمیل',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                color: AppTheme.primaryDark,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                         TextFormField(
@@ -90,10 +93,13 @@ class LoginScreen extends StatelessWidget {
                             enabledBorder: InputBorder.none,
                             labelText: 'ایمیل خود را وارد کنید',
                             labelStyle: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 0.1,
+                                fontSize: 14,
+                                letterSpacing: 0.1,
+                                color: AppTheme.textSecondary),
+                            suffixIcon: Icon(
+                              Icons.email_outlined,
+                              color: AppTheme.primaryDark,
                             ),
-                            suffixIcon: Icon(Icons.email_outlined),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -104,6 +110,7 @@ class LoginScreen extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
+                              color: AppTheme.primaryDark,
                             ),
                           ),
                         ),
@@ -127,11 +134,18 @@ class LoginScreen extends StatelessWidget {
                             enabledBorder: InputBorder.none,
                             labelText: 'رمز عبور خود را وارد کنید',
                             labelStyle: TextStyle(
+                              color: AppTheme.textSecondary,
                               fontSize: 14,
                               letterSpacing: 0.1,
                             ),
-                            suffixIcon: Icon(Icons.security_outlined),
-                            prefixIcon: Icon(Icons.visibility_outlined),
+                            suffixIcon: Icon(
+                              Icons.security_outlined,
+                              color: AppTheme.primaryDark,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.visibility_outlined,
+                              color: AppTheme.primaryColor.withOpacity(0.7),
+                            ),
                           ),
                         ),
                         SizedBox(height: 26),
@@ -149,11 +163,9 @@ class LoginScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  Colors.black87,
-                                  Colors.black54
-                                ],
+                                colors: AppTheme.primaryGradient,
+                                begin: Alignment.topLeft,
+                                end: Alignment.topRight,
                               ),
                             ),
                             child: Stack(
@@ -234,9 +246,10 @@ class LoginScreen extends StatelessWidget {
                                   child: Text(
                                     'ورود',
                                     style: TextStyle(
-                                        fontSize: 21,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 )
                               ],
@@ -260,7 +273,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
@@ -271,7 +284,7 @@ class LoginScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  color: Colors.black45,
+                                  color: AppTheme.primaryDark.withOpacity(0.8),
                                 ),
                               ),
                             )

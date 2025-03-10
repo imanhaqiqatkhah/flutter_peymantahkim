@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/views/screens/authentication_screens/login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -22,8 +23,8 @@ class RegisterScreen extends StatelessWidget {
                     'ایجاد حساب',
                     style: TextStyle(
                         fontSize: 32,
-                        color: Color(0xFF0d120E),
-                        fontWeight: FontWeight.w600,
+                        color: AppTheme.textPrimary,
+                        fontWeight: FontWeight.bold,
                         letterSpacing: 1),
                     textDirection: TextDirection.rtl,
                   ),
@@ -31,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
                   Text(
                     'برای ثبت نام زودتر اقدام کنید',
                     style: TextStyle(
-                        color: Color(0xFF0d120E).withOpacity(0.7),
+                        color: AppTheme.textSecondary,
                         fontSize: 14,
                         letterSpacing: 0.1),
                     textDirection: TextDirection.rtl,
@@ -49,7 +50,7 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                     child: Image.asset(
-                      './assets/images/logo.png',
+                      './assets/images/logo_light.png',
                       width: 220,
                       height: 220,
                     ),
@@ -66,7 +67,10 @@ class RegisterScreen extends StatelessWidget {
                           child: Text(
                             'نام کامل',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: AppTheme.primaryDark,
+                            ),
                           ),
                         ),
                         TextFormField(
@@ -91,8 +95,12 @@ class RegisterScreen extends StatelessWidget {
                             labelStyle: TextStyle(
                               fontSize: 14,
                               letterSpacing: 0.1,
+                              color: AppTheme.textSecondary,
                             ),
-                            suffixIcon: Icon(Icons.person_outlined),
+                            suffixIcon: Icon(
+                              Icons.person_outlined,
+                              color: AppTheme.primaryDark,
+                            ),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -101,7 +109,9 @@ class RegisterScreen extends StatelessWidget {
                           child: Text(
                             'ایمیل',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                color: AppTheme.primaryDark,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                         TextFormField(
@@ -124,10 +134,14 @@ class RegisterScreen extends StatelessWidget {
                             enabledBorder: InputBorder.none,
                             labelText: 'ایمیل خود را وارد کنید',
                             labelStyle: TextStyle(
+                              color: AppTheme.textSecondary,
                               fontSize: 14,
                               letterSpacing: 0.1,
                             ),
-                            suffixIcon: Icon(Icons.email_outlined),
+                            suffixIcon: Icon(
+                              Icons.email_outlined,
+                              color: AppTheme.primaryDark,
+                            ),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -136,7 +150,9 @@ class RegisterScreen extends StatelessWidget {
                           child: Text(
                             'رمز عبور',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                color: AppTheme.primaryDark,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
                           ),
                         ),
                         TextFormField(
@@ -159,11 +175,16 @@ class RegisterScreen extends StatelessWidget {
                             enabledBorder: InputBorder.none,
                             labelText: 'رمز عبور خود را وارد کنید',
                             labelStyle: TextStyle(
+                              color: AppTheme.textSecondary,
                               fontSize: 14,
                               letterSpacing: 0.1,
                             ),
-                            suffixIcon: Icon(Icons.security_outlined),
-                            prefixIcon: Icon(Icons.visibility_outlined),
+                            suffixIcon: Icon(
+                                color: AppTheme.primaryDark,
+                                Icons.security_outlined),
+                            prefixIcon: Icon(
+                                color: AppTheme.primaryDark.withOpacity(0.7),
+                                Icons.visibility_outlined),
                           ),
                         ),
                         SizedBox(height: 26),
@@ -181,11 +202,9 @@ class RegisterScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  Colors.black87,
-                                  Colors.black54
-                                ],
+                                colors: AppTheme.primaryGradient,
+                                begin: Alignment.topLeft,
+                                end: Alignment.topRight,
                               ),
                             ),
                             child: Stack(
@@ -289,7 +308,7 @@ class RegisterScreen extends StatelessWidget {
                             SizedBox(width: 8),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => LoginScreen()));
@@ -299,7 +318,7 @@ class RegisterScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  color: Colors.black45,
+                                  color: AppTheme.primaryDark.withOpacity(0.8),
                                 ),
                               ),
                             )
