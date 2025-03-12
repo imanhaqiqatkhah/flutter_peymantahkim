@@ -1,7 +1,9 @@
 // import the express module
 const express = require("express");
-const helloRoute = require("./routes/hello");
+ 
 const mongoose = require("mongoose");
+
+const authRouter = require("./routes/auth");
 
 // port server
 const PORT = 3000;
@@ -14,7 +16,8 @@ const DB =
   "mongodb+srv://peymantahkim:peyman7775@ptk.8jhmg.mongodb.net/?retryWrites=true&w=majority&appName=PTK";
 
 // middleware - to register routes or to mount routes
-app.use(helloRoute);
+app.use(express.json());
+app.use(authRouter);
 
 mongoose.connect(DB).then(() => {
   console.log("MongoDB Connected");
