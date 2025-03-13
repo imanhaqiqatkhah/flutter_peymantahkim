@@ -50,7 +50,9 @@ authRouter.post("/api/signin", async (req, res) => {
         res.json({ token, ...userWithoutPassword });
       }
     }
-  } catch (e) {}
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 module.exports = authRouter;
