@@ -25,6 +25,7 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       primaryColor: primaryColor,
+      fontFamily: 'Nazanin',
       scaffoldBackgroundColor: backgroundColor,
       colorScheme: ColorScheme.light(
         secondary: secondaryColor,
