@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/views/screens/authentication_screens/login_screen.dart';
-import 'package:flutter_peymantahkim/views/screens/splash_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

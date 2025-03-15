@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_peymantahkim/views/screens/gradient_button.dart';
-import 'package:flutter_peymantahkim/views/screens/welcome_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/gradient_button.dart';
+import 'package:flutter_peymantahkim/views/widgets/welcome_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
-import 'package:flutter_peymantahkim/views/screens/welcome_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/welcome_screen.dart';
 // import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
 class OnboardingScreen extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_peymantahkim/views/screens/onboarding_screen.dart';
-import 'package:flutter_peymantahkim/views/screens/splash_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/onboarding_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/splash_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
-import 'package:flutter_peymantahkim/views/screens/onboarding_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/onboarding_screen.dart';
 // import 'package:flutter_peymantahkim/widgets/gradient_button.dart';
 
 class ChooseLanguageScreen extends StatefulWidget {

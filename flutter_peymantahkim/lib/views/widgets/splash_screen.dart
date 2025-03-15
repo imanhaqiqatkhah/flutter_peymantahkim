@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_peymantahkim/views/screens/choose_language_screen.dart';
-import 'package:flutter_peymantahkim/views/screens/onboarding_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/choose_language_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/onboarding_screen.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
-import 'package:flutter_peymantahkim/views/screens/choose_language_screen.dart';
+import 'package:flutter_peymantahkim/views/widgets/choose_language_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
