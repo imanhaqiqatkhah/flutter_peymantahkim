@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_peymantahkim/controllers/auth_controller.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/views/screens/authentication_screens/login_screen.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthController _authController = AuthController();
+  late String email;
+  late String fullName;
+  late String password;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +84,9 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
+                          onChanged: (value) {
+                            fullName = value;
+                          },
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'لطفا نام خود را وارد کنید';
@@ -115,6 +128,9 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
+                          onChanged: (value) {
+                            email = value;
+                          },
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'لطفا ایمیل را وارد کنید';
@@ -156,6 +172,9 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
+                          onChanged: (value) {
+                            password = value;
+                          },
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'لطفا رمز عبور خود را وارد کنید';
@@ -189,11 +208,14 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 26),
                         InkWell(
-                          onTap: () {
+                          onTap: () async {
                             if (_formKey.currentState!.validate()) {
-                              print('correct');
-                            } else {
-                              print('failed');
+                              await _authController.signUpUsers(
+                                context: context,
+                                email: email,
+                                fullName: fullName,
+                                password: password,
+                              );
                             }
                           },
                           child: Container(
