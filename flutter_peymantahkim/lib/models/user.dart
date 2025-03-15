@@ -43,7 +43,7 @@ class User {
   // the json.encode() function converts a dart object (such as map or list)
   // into a json string representation, making it suitable for communication
   //between different systems.
-  String toJason() => json.encode(toMap());
+  String toJson() => json.encode(toMap());
 
   // deserialization: convert a map to a user object
   // purpose - manipulation and user: once the data is converted to a user object
