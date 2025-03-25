@@ -21,7 +21,8 @@ class AuthController {
           state: '',
           city: '',
           locality: '',
-          password: password);
+          password: password,
+          token: '');
       http.Response response = await http.post(Uri.parse('$uri/api/signup'),
           body:
               user.toJson(), // convert the user object to json for request body
