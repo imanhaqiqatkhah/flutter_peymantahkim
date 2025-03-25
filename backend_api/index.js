@@ -13,7 +13,7 @@ const app = express();
 
 // mongodb string
 const DB =
-  "mongodb+srv://peymantahkim:peyman7775@ptk.8jhmg.mongodb.net/?retryWrites=true&w=majority&appName=PTK";
+  "mongodb+srv://imanhaqiqatkhah:imanhaqiqatkhah@cluster0.cgjcx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // middleware - to register routes or to mount routes
 app.use(express.json());
