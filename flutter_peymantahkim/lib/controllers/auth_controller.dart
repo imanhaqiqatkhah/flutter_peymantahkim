@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/global_variables.dart';
 import 'package:flutter_peymantahkim/models/user.dart';
@@ -35,6 +37,36 @@ class AuthController {
           onSuccess: () {
             showSnackBar(context, 'اکانت برای شما ایجاد شد');
           });
-    } catch (e) {}
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
+  /// signin users function
+  Future<void> signInUsers(
+      {required context,
+      required String email,
+      required String password}) async {
+    try {
+      http.Response response = await http.post(Uri.parse("$uri/api/signin"),
+          body: jsonEncode(
+            {
+              'email': email,
+              'password': password,
+            },
+          ),
+          headers: <String, String>{
+            "Content-Type": 'application/json; charset=UTF-8',
+          });
+
+      manageHttpResponse(
+          response: response,
+          context: context,
+          onSuccess: () {
+            showSnackBar(context, 'شما با موفقیت وارد شدید');
+          });
+    } catch (e) {
+      print("Error: $e");
+    }
   }
 }
