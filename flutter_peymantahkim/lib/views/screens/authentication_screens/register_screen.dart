@@ -27,7 +27,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       password: password,
     )
         .whenComplete(() {
-      _formKey.currentState!.reset();
       setState(() {
         isLoading = false;
       });

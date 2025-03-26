@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/global_variables.dart';
 import 'package:flutter_peymantahkim/models/user.dart';
 import 'package:flutter_peymantahkim/services/manage_http_response.dart';
+import 'package:flutter_peymantahkim/views/screens/authentication_screens/login_screen.dart';
+import 'package:flutter_peymantahkim/views/screens/main_screen.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController {
@@ -36,6 +38,8 @@ class AuthController {
           response: response,
           context: context,
           onSuccess: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
             showSnackBar(context, 'اکانت برای شما ایجاد شد');
           });
     } catch (e) {
@@ -64,6 +68,10 @@ class AuthController {
           response: response,
           context: context,
           onSuccess: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const MainScreen()),
+                (route) => false);
             showSnackBar(context, 'شما با موفقیت وارد شدید');
           });
     } catch (e) {
