@@ -14,6 +14,21 @@ class _LoginScreenState extends State<LoginScreen> {
   final AuthController _authController = AuthController();
   late String email;
   late String password;
+  bool isLoading = false;
+
+  loginUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _authController
+        .signInUsers(context: context, email: email, password: password)
+        .whenComplete(() {
+      _formKey.currentState!.reset();
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,12 +180,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 26),
                         InkWell(
-                          onTap: () async {
+                          onTap: () {
                             if (_formKey.currentState!.validate()) {
-                              await _authController.signInUsers(
-                                  context: context,
-                                  email: email,
-                                  password: password);
+                              loginUser();
                             } else {}
                           },
                           child: Container(
@@ -259,14 +271,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ),
                                 Center(
-                                  child: Text(
-                                    'ورود',
-                                    style: TextStyle(
-                                      fontSize: 21,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                                  child: isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white)
+                                      : Text(
+                                          'ورود',
+                                          style: TextStyle(
+                                            fontSize: 21,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                 )
                               ],
                             ),

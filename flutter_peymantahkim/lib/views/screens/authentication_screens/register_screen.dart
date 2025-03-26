@@ -14,6 +14,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late String email;
   late String fullName;
   late String password;
+  bool isLoading = false;
+  registerUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    await _authController
+        .signUpUsers(
+      context: context,
+      email: email,
+      fullName: fullName,
+      password: password,
+    )
+        .whenComplete(() {
+      _formKey.currentState!.reset();
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -208,14 +227,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         SizedBox(height: 26),
                         InkWell(
-                          onTap: () async {
+                          onTap: () {
                             if (_formKey.currentState!.validate()) {
-                              await _authController.signUpUsers(
-                                context: context,
-                                email: email,
-                                fullName: fullName,
-                                password: password,
-                              );
+                              registerUser();
                             }
                           },
                           child: Container(
@@ -304,14 +318,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 ),
                                 Center(
-                                  child: Text(
-                                    'ثبت نام',
-                                    style: TextStyle(
-                                      fontSize: 21,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                                  child: isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white,
+                                        )
+                                      : Text(
+                                          'ثبت نام',
+                                          style: TextStyle(
+                                            fontSize: 21,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
                                 )
                               ],
                             ),
