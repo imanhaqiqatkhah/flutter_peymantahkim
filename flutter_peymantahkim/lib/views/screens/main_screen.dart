@@ -37,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
           },
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: false,
+          iconSize: 27,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: 'خانه'),
