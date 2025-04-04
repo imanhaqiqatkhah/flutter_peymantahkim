@@ -27,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
         textDirection: TextDirection.rtl,
         child: BottomNavigationBar(
           selectedItemColor: Colors.blue[800],
+          selectedIconTheme: IconThemeData(color: Colors.blue[800]),
           unselectedItemColor: Colors.blueGrey,
           currentIndex: _pageIndex,
           onTap: (value) {
@@ -38,36 +39,16 @@ class _MainScreenState extends State<MainScreen> {
           showUnselectedLabels: false,
           items: [
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  './assets/icons/home.png',
-                  color: Colors.blueAccent,
-                  width: 30,
-                ),
-                label: 'خانه'),
+                icon: Icon(Icons.home_outlined), label: 'خانه'),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  './assets/icons/love.png',
-                  width: 30,
-                ),
+                icon: Icon(Icons.favorite_outline_outlined),
                 label: 'علاقه مندی'),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  './assets/icons/mart.png',
-                  width: 30,
-                ),
-                label: 'فروشگاه'),
+                icon: Icon(Icons.shopping_bag_outlined), label: 'فروشگاه'),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  './assets/icons/cart.png',
-                  width: 30,
-                ),
-                label: 'سبد خرید'),
+                icon: Icon(Icons.shopping_cart_outlined), label: 'سبد خرید'),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  './assets/icons/user.png',
-                  width: 30,
-                ),
-                label: 'پروفایل'),
+                icon: Icon(Icons.account_circle_outlined), label: 'پروفایل'),
           ],
         ),
       ),
