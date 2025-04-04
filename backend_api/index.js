@@ -1,9 +1,11 @@
 // import the express module
 const express = require("express");
- 
+
 const mongoose = require("mongoose");
 
 const authRouter = require("./routes/auth");
+
+const bannerRouter = require("./routes/banner");
 
 // port server
 const PORT = 3000;
@@ -18,6 +20,7 @@ const DB =
 // middleware - to register routes or to mount routes
 app.use(express.json());
 app.use(authRouter);
+app.use(bannerRouter);
 
 mongoose.connect(DB).then(() => {
   console.log("MongoDB Connected");
