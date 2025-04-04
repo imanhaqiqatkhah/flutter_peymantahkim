@@ -18,11 +18,11 @@ class HeaderWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Positioned(
-              right: 35,
-              top: 68,
+              right: 30,
+              top: 55,
               child: SizedBox(
-                width: 240,
-                height: 50,
+                width: 230,
+                height: 48,
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'جستجو',
@@ -55,7 +55,7 @@ class HeaderWidget extends StatelessWidget {
             ),
             Positioned(
               left: 65,
-              top: 78,
+              top: 66,
               child: Material(
                 type: MaterialType.transparency,
                 child: InkWell(
@@ -74,7 +74,7 @@ class HeaderWidget extends StatelessWidget {
             ),
             Positioned(
               left: 20,
-              top: 78,
+              top: 66,
               child: Material(
                 type: MaterialType.transparency,
                 child: InkWell(
