@@ -34,17 +34,17 @@ class HeaderWidget extends StatelessWidget {
                         EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                     prefixIcon: Icon(
                       Icons.search,
-                      color: Colors.blueGrey,
+                      color: Colors.blueGrey[400],
                       size: 25,
                       textDirection: TextDirection.rtl,
                     ),
                     suffixIcon: Icon(
                       Icons.camera_alt_outlined,
-                      color: Colors.blueGrey,
+                      color: Colors.blueGrey[400],
                       size: 26,
                     ),
                     focusColor: Colors.black,
-                    fillColor: Colors.white,
+                    fillColor: Colors.grey.shade200,
                     filled: true,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
