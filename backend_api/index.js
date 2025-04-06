@@ -7,6 +7,8 @@ const authRouter = require("./routes/auth");
 
 const bannerRouter = require("./routes/banner");
 
+const categoryRouter = require("./routes/category");
+
 // port server
 const PORT = 3000;
 
@@ -21,6 +23,7 @@ const DB =
 app.use(express.json());
 app.use(authRouter);
 app.use(bannerRouter);
+app.use(categoryRouter);
 
 mongoose.connect(DB).then(() => {
   console.log("MongoDB Connected");
