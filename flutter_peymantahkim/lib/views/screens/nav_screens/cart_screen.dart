@@ -8,7 +8,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
-          'سبد خرید',
+          'ثبت درخواست',
           style: TextStyle(fontSize: 50),
         ),
       ),

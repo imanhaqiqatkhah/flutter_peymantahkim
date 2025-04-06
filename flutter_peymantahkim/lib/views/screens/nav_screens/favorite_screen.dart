@@ -8,7 +8,7 @@ class FavoriteScreen extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          'علاقه مندی',
+          'حوزه فعالیت',
           style: TextStyle(fontSize: 50),
         ),
       ),

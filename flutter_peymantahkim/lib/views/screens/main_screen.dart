@@ -43,11 +43,11 @@ class _MainScreenState extends State<MainScreen> {
                 icon: Icon(Icons.home_outlined), label: 'خانه'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite_outline_outlined),
-                label: 'علاقه مندی'),
+                label: 'حوزه فعالیت'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_bag_outlined), label: 'فروشگاه'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined), label: 'سبد خرید'),
+                icon: Icon(Icons.shopping_cart_outlined), label: 'ثبت درخواست'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_outlined), label: 'پروفایل'),
           ],
