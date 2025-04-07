@@ -42,8 +42,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined), label: 'خانه'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_outline_outlined),
-                label: 'حوزه فعالیت'),
+                icon: Icon(Icons.category_outlined), label: 'حوزه فعالیت'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_bag_outlined), label: 'فروشگاه'),
             BottomNavigationBarItem(

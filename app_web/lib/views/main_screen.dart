@@ -1,3 +1,8 @@
+import 'package:app_web/views/side_bar_screens/buyers_screen.dart';
+import 'package:app_web/views/side_bar_screens/category_screen.dart';
+import 'package:app_web/views/side_bar_screens/orders_screen.dart';
+import 'package:app_web/views/side_bar_screens/products_screen.dart';
+import 'package:app_web/views/side_bar_screens/upload_banner_screen.dart';
 import 'package:app_web/views/side_bar_screens/vendors_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,41 +16,105 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  Widget _selectedScreen = VendorsScreen();
+  screenSelector(item) {
+    switch (item.route) {
+      case BuyersScreen.id:
+        setState(() {
+          _selectedScreen = BuyersScreen();
+        });
+        break;
+      case VendorsScreen.id:
+        setState(() {
+          _selectedScreen = VendorsScreen();
+        });
+        break;
+      case CategoryScreen.id:
+        setState(() {
+          _selectedScreen = CategoryScreen();
+        });
+        break;
+      case OrdersScreen.id:
+        setState(() {
+          _selectedScreen = OrdersScreen();
+        });
+        break;
+      case ProductsScreen.id:
+        setState(() {
+          _selectedScreen = ProductsScreen();
+        });
+        break;
+      case UploadBannerScreen.id:
+        setState(() {
+          _selectedScreen = UploadBannerScreen();
+        });
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AdminScaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text('مدیریت اپلیکیشن پیمان تحکیم'),
+          backgroundColor: Colors.blue.shade900,
+          title: Text(
+            'پنل ادمین پیمان تحکیم خوزستان',
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
+          foregroundColor: Colors.blueGrey.shade100,
         ),
-        body: Column(
-          children: [
-            Row(
+        body: _selectedScreen,
+        sideBar: SideBar(
+          header: Container(
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(color: Colors.black),
+            child: Center(
+                child: Row(
               children: [
+                Image.asset('./assets/logo_light.png'),
                 Text(
-                  'داشبورد',
+                  'شرکت پیمان تحکیم خوزستان',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
-            ),
+            )),
+          ),
+          items: [
+            AdminMenuItem(
+                title: 'پرسنل ها',
+                route: VendorsScreen.id,
+                icon: CupertinoIcons.person_3),
+            AdminMenuItem(
+                title: 'خریدار ها',
+                route: BuyersScreen.id,
+                icon: CupertinoIcons.person),
+            AdminMenuItem(
+                title: 'درخواست ها',
+                route: OrdersScreen.id,
+                icon: CupertinoIcons.shopping_cart),
+            AdminMenuItem(
+                title: 'فعالیت ها',
+                route: CategoryScreen.id,
+                icon: Icons.category),
+            AdminMenuItem(
+                title: 'عکس بنر ها',
+                route: UploadBannerScreen.id,
+                icon: CupertinoIcons.bandage),
+            AdminMenuItem(
+                title: 'فروشگاه', route: ProductsScreen.id, icon: Icons.store),
           ],
+          selectedRoute: VendorsScreen.id,
+          onSelected: (item) {
+            screenSelector(item);
+          },
         ),
-        sideBar: SideBar(items: [
-          AdminMenuItem(
-              title: 'فروشنده ها', route: "", icon: CupertinoIcons.person_3),
-          AdminMenuItem(
-              title: 'خربدار ها', route: "", icon: CupertinoIcons.person),
-          AdminMenuItem(
-              title: 'سفارش ها', route: "", icon: CupertinoIcons.shopping_cart),
-          AdminMenuItem(title: 'دسته بندی ها', route: "", icon: Icons.category),
-          AdminMenuItem(
-              title: 'عکس بنر ها', route: "", icon: CupertinoIcons.bandage),
-          AdminMenuItem(title: 'محصول ها', route: "", icon: Icons.store),
-          AdminMenuItem(
-              title: 'درخواست ها', route: "", icon: CupertinoIcons.calendar),
-        ], selectedRoute: ''),
       ),
     );
   }
