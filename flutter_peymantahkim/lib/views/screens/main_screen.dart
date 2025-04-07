@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/views/screens/nav_screens/account_screen.dart';
 import 'package:flutter_peymantahkim/views/screens/nav_screens/cart_screen.dart';
@@ -46,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_bag_outlined), label: 'فروشگاه'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_outlined), label: 'ثبت درخواست'),
+                icon: Icon(CupertinoIcons.plus_bubble), label: 'ثبت درخواست'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_outlined), label: 'پروفایل'),
           ],
