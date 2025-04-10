@@ -189,14 +189,14 @@ class OnboardingPage extends StatelessWidget {
         children: [
           Image.asset(
             data.image,
-            width: MediaQuery.of(context).size.width * 0.65,
+            width: MediaQuery.of(context).size.width * 0.6,
           ),
           SizedBox(height: 48),
           Text(
             data.title,
             style: TextStyle(
               color: AppTheme.textPrimary,
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
@@ -207,7 +207,7 @@ class OnboardingPage extends StatelessWidget {
             data.description,
             style: TextStyle(
               color: AppTheme.textSecondary,
-              fontSize: 12,
+              fontSize: 16,
               height: 1.5,
             ),
             textAlign: TextAlign.center,
