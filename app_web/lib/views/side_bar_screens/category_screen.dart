@@ -13,7 +13,7 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final CategoryController _categoryController = CategoryController();
-  late String categoryName;
+  late String name;
   dynamic _bannerImage;
   dynamic _image;
   pickImage() async {
@@ -116,7 +116,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         width: 180,
                         child: TextFormField(
                           onChanged: (value) {
-                            categoryName = value;
+                            name = value;
                           },
                           validator: (value) {
                             if (value!.isNotEmpty) {
@@ -142,7 +142,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _categoryController.uploadCategory(
-                              pickedImage: _image, pickedBanner: _bannerImage);
+                            pickedImage: _image,
+                            pickedBanner: _bannerImage,
+                            name: name,
+                            context: context,
+                          );
                         }
                       },
                       child: Text('ثبت'),

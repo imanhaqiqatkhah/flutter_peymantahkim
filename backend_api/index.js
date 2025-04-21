@@ -7,6 +7,7 @@ const categoryRouter = require("./routes/category");
 const subcategoryRouter = require("./routes/sub_category");
 const productRouter = require("./routes/product");
 const productReviewRouter = require("./routes/product_review");
+const cors = require("cors");
 
 // port server
 const PORT = 3000;
@@ -20,6 +21,7 @@ const DB =
 
 // middleware - to register routes or to mount routes
 app.use(express.json());
+app.use(cors); /// enable cors for all routes and origin
 app.use(authRouter);
 app.use(bannerRouter);
 app.use(categoryRouter);
