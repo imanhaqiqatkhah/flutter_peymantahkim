@@ -16,7 +16,7 @@ class BannerModel {
 
   factory BannerModel.fromMap(Map<String, dynamic> map) {
     return BannerModel(
-      id: map['id'] as String,
+      id: map['_id'] as String,
       image: map['image'] as String,
     );
   }
