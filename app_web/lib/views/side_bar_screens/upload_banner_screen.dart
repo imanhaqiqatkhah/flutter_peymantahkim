@@ -1,4 +1,5 @@
 import 'package:app_web/controllers/banner_controller.dart';
+import 'package:app_web/views/side_bar_screens/banner_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -84,6 +85,8 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
             child: Text('آپلود عکس'),
           ),
         ),
+        Divider(color: Colors.grey),
+        BannerWidget(),
       ],
     );
   }
