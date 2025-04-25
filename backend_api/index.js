@@ -21,7 +21,7 @@ const DB =
 
 // middleware - to register routes or to mount routes
 app.use(express.json());
-app.use(cors); /// enable cors for all routes and origin
+app.use(cors()); /// enable cors for all routes and origin
 app.use(authRouter);
 app.use(bannerRouter);
 app.use(categoryRouter);
