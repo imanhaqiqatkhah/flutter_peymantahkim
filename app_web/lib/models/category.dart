@@ -23,17 +23,14 @@ class Category {
     };
   }
 
-  factory Category.fromMap(Map<String, dynamic> map) {
+  String toJson() => json.encode(toMap());
+
+  factory Category.fromJson(Map<String, dynamic> map) {
     return Category(
-      id: map['id'] as String,
+      id: map['_id'] as String,
       name: map['name'] as String,
       image: map['image'] as String,
       banner: map['banner'] as String,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory Category.fromJson(String source) =>
-      Category.fromMap(json.decode(source) as Map<String, dynamic>);
 }
