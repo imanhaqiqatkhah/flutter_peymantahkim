@@ -75,11 +75,11 @@ class CategoryController {
             data.map((category) => Category.fromJson(category)).toList();
         return categories;
       } else {
-        throw Exception('خطا در بارگیری فعالیت ها');
+        throw Exception('خطا در بارگیری مجموعه ها');
       }
     } catch (e) {
       print(e);
-      throw Exception('خطا در بارگیری فعالیت ها $e');
+      throw Exception('خطا در بارگیری مجموعه ها $e');
     }
   }
 }

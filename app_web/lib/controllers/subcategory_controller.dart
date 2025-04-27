@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:app_web/global_variable.dart';
+import 'package:app_web/models/category.dart';
 import 'package:app_web/models/subcategory.dart';
 import 'package:app_web/services/manage_http_response.dart';
 import 'package:cloudinary_public/cloudinary_public.dart';
@@ -45,6 +48,34 @@ class SubcategoryController {
           });
     } catch (e) {
       print("$e");
+    }
+  }
+
+  Future<List<Subcategory>> loadSubcategories() async {
+    try {
+      // send an http get request to load the categories
+      http.Response response = await http.get(
+        Uri.parse('$uri/api/subcategories'),
+        headers: <String, String>{
+          "Content-Type": 'application/json; charset=UTF-8'
+        },
+      );
+
+      print(response.body);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+
+        List<Subcategory> subcategories = data
+            .map((subcategory) => Subcategory.fromJson(subcategory))
+            .toList();
+        return subcategories;
+      } else {
+        throw Exception('خطا در بارگیری فعالیت ها');
+      }
+    } catch (e) {
+      print(e);
+      throw Exception('خطا در بارگیری فعالیت ها $e');
     }
   }
 }
