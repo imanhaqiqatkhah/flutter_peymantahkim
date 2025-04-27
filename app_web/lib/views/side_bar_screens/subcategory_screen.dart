@@ -68,38 +68,41 @@ class _SubcategoryScreenState extends State<SubcategoryScreen> {
               color: Colors.grey.shade400,
             ),
           ),
-          FutureBuilder(
-              future: futureCategories,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text('خطا: ${snapshot.error}'),
-                  );
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(
-                    child: Text('بدون مجموعه'),
-                  );
-                } else {
-                  return DropdownButton<Category>(
-                      hint: Text('انتخاب مجموعه'),
-                      items: snapshot.data!.map((Category category) {
-                        return DropdownMenuItem(
-                          value: category,
-                          child: Text(category.name),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedCategory = value;
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FutureBuilder(
+                future: futureCategories,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('خطا: ${snapshot.error}'),
+                    );
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(
+                      child: Text('بدون مجموعه'),
+                    );
+                  } else {
+                    return DropdownButton<Category>(
+                        hint: Text('انتخاب مجموعه'),
+                        items: snapshot.data!.map((Category category) {
+                          return DropdownMenuItem(
+                            value: category,
+                            child: Text(category.name),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectedCategory = value;
+                          });
+                          print(selectedCategory!.name);
                         });
-                        print(selectedCategory!.name);
-                      });
-                }
-              }),
+                  }
+                }),
+          ),
           Row(
             children: [
               Column(
