@@ -60,7 +60,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     alignment: Alignment.topRight,
                     child: Center(
                       child: Text(
-                        'دسته بندی ها',
+                        'مجموعه ها',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             child: Center(
                               child: _image != null
                                   ? Image.memory(_image)
-                                  : Text('عکس دسته بندی'),
+                                  : Text('عکس مجموعه'),
                             ),
                           ),
                           Padding(
@@ -124,11 +124,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               if (value!.isNotEmpty) {
                                 return null;
                               } else {
-                                return 'لطفا نام دسته بندی را وارد کنید';
+                                return 'لطفا نام مجموعه را وارد کنید';
                               }
                             },
                             decoration: InputDecoration(
-                              labelText: "نام دسته بندی را وارد کنید",
+                              labelText: "نام مجموعه را وارد کنید",
                             ),
                           ),
                         ),
@@ -178,7 +178,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     child: _bannerImage != null
                         ? Image.memory(_bannerImage)
                         : Text(
-                            'بنر دسته بندی',
+                            'بنر مجموعه',
                             style: TextStyle(color: Colors.white),
                           ),
                   ),

@@ -62,9 +62,7 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Center(
-                child: _image != null
-                    ? Image.memory(_image)
-                    : Text('عکس دسته بندی'),
+                child: _image != null ? Image.memory(_image) : Text('عکس بنر'),
               ),
             ),
             ElevatedButton(

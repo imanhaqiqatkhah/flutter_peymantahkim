@@ -106,11 +106,11 @@ class _MainScreenState extends State<MainScreen> {
                 route: OrdersScreen.id,
                 icon: CupertinoIcons.shopping_cart),
             AdminMenuItem(
-                title: 'فعالیت ها',
+                title: 'مجموعه ها',
                 route: CategoryScreen.id,
                 icon: Icons.category),
             AdminMenuItem(
-                title: 'دسته بندی ها',
+                title: 'فعالیت ها',
                 route: SubcategoryScreen.id,
                 icon: Icons.category_outlined),
             AdminMenuItem(
