@@ -33,23 +33,25 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(4.0),
           child: Container(
             alignment: Alignment.topRight,
             child: Center(
               child: Text(
-                "بنر ها",
+                'بنر ها',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
                   fontSize: 36,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
         ),
-        Divider(
-          color: Colors.grey,
-          thickness: 2,
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Divider(
+            color: Colors.grey.shade400,
+          ),
         ),
         Row(
           children: [
