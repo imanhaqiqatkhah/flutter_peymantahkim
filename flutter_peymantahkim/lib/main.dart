@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       title: 'Flutter PeymanTahkim Company',
-      home: SplashScreen(),
+      home: MainScreen(),
     );
   }
 }

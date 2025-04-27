@@ -27,7 +27,7 @@ class HeaderWidget extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: 'جستجو',
                     hintStyle: TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: Colors.blueGrey,
                     ),
                     contentPadding:
@@ -54,7 +54,7 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 65,
+              right: 285,
               top: 66,
               child: Material(
                 type: MaterialType.transparency,
@@ -73,7 +73,7 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 20,
+              right: 330,
               top: 66,
               child: Material(
                 type: MaterialType.transparency,
