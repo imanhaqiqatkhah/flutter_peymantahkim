@@ -18,7 +18,7 @@ class HeaderWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Positioned(
-              right: 30,
+              right: 20,
               top: 55,
               child: SizedBox(
                 width: 230,
@@ -54,7 +54,7 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: 285,
+              right: 275,
               top: 66,
               child: Material(
                 type: MaterialType.transparency,
@@ -73,7 +73,7 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              right: 330,
+              right: 315,
               top: 66,
               child: Material(
                 type: MaterialType.transparency,

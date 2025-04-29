@@ -60,14 +60,14 @@ class _CategoryItemWidgetState extends State<CategoryItemWidget> {
                       children: [
                         Image.network(
                           category.image,
-                          height: 70,
-                          width: 70,
+                          height: 55,
+                          width: 55,
                         ),
                         Text(
                           category.name,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         )
                       ],
