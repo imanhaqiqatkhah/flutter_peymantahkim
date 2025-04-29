@@ -22,7 +22,7 @@ class _BannerWidgetState extends State<BannerWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 190,
+      height: 205,
       decoration: BoxDecoration(
         color: Color(0xFFF7F7F7),
         borderRadius: BorderRadius.circular(4),
