@@ -22,7 +22,7 @@ class _BannerWidgetState extends State<BannerWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 170,
+      height: 190,
       decoration: BoxDecoration(
         color: Color(0xFFF7F7F7),
         borderRadius: BorderRadius.circular(4),
@@ -43,6 +43,7 @@ class _BannerWidgetState extends State<BannerWidget> {
           } else {
             final banners = snapshot.data!;
             return PageView.builder(
+              physics: BouncingScrollPhysics(),
               itemCount: banners.length,
               itemBuilder: (context, index) {
                 final banner = banners[index];
@@ -50,6 +51,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                   padding: const EdgeInsets.all(8.0),
                   child: Image.network(
                     banner.image,
+                    fit: BoxFit.cover,
                   ),
                 );
               },
