@@ -29,65 +29,68 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Container(
-            alignment: Alignment.topRight,
-            child: Center(
-              child: Text(
-                'بنر ها',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Container(
+              alignment: Alignment.topRight,
+              child: Center(
+                child: Text(
+                  'بنر ها',
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Divider(
-            color: Colors.grey.shade400,
-          ),
-        ),
-        Row(
-          children: [
-            Container(
-              margin: EdgeInsets.all(8),
-              width: 130,
-              height: 130,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey.shade200,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Center(
-                child: _image != null ? Image.memory(_image) : Text('عکس بنر'),
-              ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Divider(
+              color: Colors.grey.shade400,
             ),
-            ElevatedButton(
-              onPressed: () async {
-                await _bannerController.uploadBanner(
-                    pickedImage: _image, context: context);
+          ),
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.all(8),
+                width: 130,
+                height: 130,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey.shade200,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Center(
+                  child:
+                      _image != null ? Image.memory(_image) : Text('عکس بنر'),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  await _bannerController.uploadBanner(
+                      pickedImage: _image, context: context);
+                },
+                child: Text('ثبت'),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                pickImage();
               },
-              child: Text('ثبت'),
+              child: Text('آپلود عکس'),
             ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              pickImage();
-            },
-            child: Text('آپلود عکس'),
           ),
-        ),
-        Divider(color: Colors.grey),
-        BannerWidget(),
-      ],
+          Divider(color: Colors.grey),
+          BannerWidget(),
+        ],
+      ),
     );
   }
 }
