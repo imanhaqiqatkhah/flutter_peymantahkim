@@ -41,7 +41,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         padding: EdgeInsets.all(8),
         child: Center(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height,
             child: Form(
               key: _formKey,
               child: Column(
