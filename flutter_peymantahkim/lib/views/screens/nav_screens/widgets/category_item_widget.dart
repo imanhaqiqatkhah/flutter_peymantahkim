@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/controllers/category_controller.dart';
 import 'package:flutter_peymantahkim/models/category_model.dart';
+import 'package:flutter_peymantahkim/views/screens/detail/screens/inner_category_screen.dart';
 import 'package:flutter_peymantahkim/views/screens/nav_screens/widgets/reusable_text_widget.dart';
 
 class CategoryItemWidget extends StatefulWidget {
@@ -56,21 +57,33 @@ class _CategoryItemWidgetState extends State<CategoryItemWidget> {
                       crossAxisSpacing: 8),
                   itemBuilder: (context, index) {
                     final category = categories[index];
-                    return Column(
-                      children: [
-                        Image.network(
-                          category.image,
-                          height: 55,
-                          width: 55,
-                        ),
-                        Text(
-                          category.name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InnerCategoryScreen(
+                              category: category,
+                            ),
                           ),
-                        )
-                      ],
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Image.network(
+                            category.image,
+                            height: 55,
+                            width: 55,
+                          ),
+                          Text(
+                            category.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          )
+                        ],
+                      ),
                     );
                   },
                 );

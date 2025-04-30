@@ -49,9 +49,12 @@ class _BannerWidgetState extends State<BannerWidget> {
                 final banner = banners[index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    banner.image,
-                    fit: BoxFit.cover,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.network(
+                      banner.image,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 );
               },

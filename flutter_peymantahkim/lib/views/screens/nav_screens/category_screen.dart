@@ -148,8 +148,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   return Column(
                                     children: [
                                       Container(
-                                        width: 50,
-                                        height: 50,
+                                        width: 55,
+                                        height: 55,
                                         decoration: BoxDecoration(
                                           color: Colors.grey.shade200,
                                         ),
@@ -164,7 +164,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                         child: Text(
                                           subcategory.subCategoryName,
                                           style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 13,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
