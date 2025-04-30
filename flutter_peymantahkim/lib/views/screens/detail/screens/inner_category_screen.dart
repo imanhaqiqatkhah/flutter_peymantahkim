@@ -33,71 +33,74 @@ class _InnerCategoryScreenState extends State<InnerCategoryScreen> {
         child: InnerHeaderWidget(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            InnerBannerWidget(image: widget.category.banner),
-            Center(
-              child: Text(
-                "درخواست شما...",
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.7,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              InnerBannerWidget(image: widget.category.banner),
+              Center(
+                child: Text(
+                  "درخواست شما...",
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.7,
+                  ),
                 ),
               ),
-            ),
-            FutureBuilder(
-              future: _subCategories,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text('خطا ${snapshot.error}'),
-                  );
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Center(
-                    child: Text('بدون فعالیت'),
-                  );
-                } else {
-                  final subcategories = snapshot.data!;
-                  return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: subcategories.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8),
-                    itemBuilder: (context, index) {
-                      final subcategory = subcategories[index];
-                      return InkWell(
-                        onTap: () {},
-                        child: Column(
-                          children: [
-                            Image.network(
-                              subcategory.image,
-                              height: 55,
-                              width: 55,
-                            ),
-                            Text(
-                              subcategory.subCategoryName,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
+              FutureBuilder(
+                future: _subCategories,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('خطا ${snapshot.error}'),
+                    );
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(
+                      child: Text('بدون فعالیت'),
+                    );
+                  } else {
+                    final subcategories = snapshot.data!;
+                    return GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: subcategories.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 8),
+                      itemBuilder: (context, index) {
+                        final subcategory = subcategories[index];
+                        return InkWell(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Image.network(
+                                subcategory.image,
+                                height: 75,
+                                width: 85,
                               ),
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                }
-              },
-            ),
-          ],
+                              Text(
+                                subcategory.subCategoryName,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -139,7 +139,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 itemCount: _subcategories.length,
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 3,
+                                        crossAxisCount: 2,
                                         mainAxisSpacing: 4,
                                         crossAxisSpacing: 8),
                                 itemBuilder: (context, index) {
@@ -148,8 +148,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   return Column(
                                     children: [
                                       Container(
-                                        width: 55,
-                                        height: 55,
+                                        width: 85,
+                                        height: 75,
                                         decoration: BoxDecoration(
                                           color: Colors.grey.shade200,
                                         ),
