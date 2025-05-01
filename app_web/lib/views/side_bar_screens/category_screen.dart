@@ -207,6 +207,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
             ),
             CategoryWidget(),
+            SizedBox(height: 20),
           ],
         ),
       ),

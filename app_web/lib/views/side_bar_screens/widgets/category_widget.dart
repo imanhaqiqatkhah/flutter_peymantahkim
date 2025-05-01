@@ -53,7 +53,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                         height: 100,
                         width: 100,
                       ),
-                      Text(category.name)
+                      Text(category.name),
                     ],
                   );
                 });

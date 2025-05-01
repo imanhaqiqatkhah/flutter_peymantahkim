@@ -38,7 +38,7 @@ class _BannerWidgetState extends State<BannerWidget> {
             return GridView.builder(
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 6, crossAxisSpacing: 8, mainAxisSpacing: 8),
+                  crossAxisCount: 2, crossAxisSpacing: 6, mainAxisSpacing: 6),
               itemCount: banners.length,
               itemBuilder: (context, index) {
                 final banner = banners[index];
@@ -47,7 +47,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                   child: Image.network(
                     banner.image,
                     height: 100,
-                    width: 100,
+                    width: 150,
                   ),
                 );
               },
