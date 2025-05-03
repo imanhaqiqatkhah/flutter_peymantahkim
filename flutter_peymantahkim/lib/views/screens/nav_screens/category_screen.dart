@@ -3,6 +3,7 @@ import 'package:flutter_peymantahkim/controllers/category_controller.dart';
 import 'package:flutter_peymantahkim/controllers/subcategory_controller.dart';
 import 'package:flutter_peymantahkim/models/category_model.dart';
 import 'package:flutter_peymantahkim/models/subcategory_model.dart';
+import 'package:flutter_peymantahkim/views/screens/detail/screens/widgets/subcategory_tile_widget.dart';
 import 'package:flutter_peymantahkim/views/screens/nav_screens/widgets/header_widget.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -58,6 +59,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // left side - display categories
             Expanded(
@@ -68,7 +70,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   future: futureCategories,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
                     } else if (snapshot.hasError) {
                       return Center(
                         child: Text('Error: ${snapshot.error}'),
@@ -81,9 +85,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           final category = categories[index];
                           return ListTile(
                             onTap: () {
-                              setState(() {
-                                _selectedCategory = category;
-                              });
+                              setState(
+                                () {
+                                  _selectedCategory = category;
+                                },
+                              );
                               _loadSubcategories(category.name);
                             },
                             title: Text(
@@ -137,6 +143,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           ),
                           _subcategories.isNotEmpty
                               ? GridView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: _subcategories.length,
                                   gridDelegate:
@@ -148,34 +155,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   ),
                                   itemBuilder: (context, index) {
                                     final subcategory = _subcategories[index];
-
-                                    return Column(
-                                      children: [
-                                        Container(
-                                          width: 85,
-                                          height: 75,
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.shade200,
-                                          ),
-                                          child: Center(
-                                            child: Image.network(
-                                              subcategory.image,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                        Center(
-                                          child: Text(
-                                            subcategory.subCategoryName,
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                    return SubcategoryTileWidget(
+                                      image: subcategory.image,
+                                      title: subcategory.subCategoryName,
                                     );
-                                  })
+                                  },
+                                )
                               : Center(
                                   child: Text(
                                     'فعالیتی موجود نیست',
