@@ -107,82 +107,87 @@ class _CategoryScreenState extends State<CategoryScreen> {
             Expanded(
               flex: 4,
               child: _selectedCategory != null
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            _selectedCategory!.name,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.7,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 150,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(_selectedCategory!.banner),
-                                fit: BoxFit.cover,
+                  ? SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              _selectedCategory!.name,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.7,
                               ),
                             ),
                           ),
-                        ),
-                        _subcategories.isNotEmpty
-                            ? GridView.builder(
-                                shrinkWrap: true,
-                                itemCount: _subcategories.length,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        mainAxisSpacing: 4,
-                                        crossAxisSpacing: 8),
-                                itemBuilder: (context, index) {
-                                  final subcategory = _subcategories[index];
-
-                                  return Column(
-                                    children: [
-                                      Container(
-                                        width: 85,
-                                        height: 75,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade200,
-                                        ),
-                                        child: Center(
-                                          child: Image.network(
-                                            subcategory.image,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          subcategory.subCategoryName,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                })
-                            : Center(
-                                child: Text(
-                                  'فعالیتی موجود نیست',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.7,
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 150,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image:
+                                      NetworkImage(_selectedCategory!.banner),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                      ],
+                            ),
+                          ),
+                          _subcategories.isNotEmpty
+                              ? GridView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: _subcategories.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 4,
+                                    crossAxisSpacing: 8,
+                                    childAspectRatio: 2 / 3,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    final subcategory = _subcategories[index];
+
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          width: 85,
+                                          height: 75,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey.shade200,
+                                          ),
+                                          child: Center(
+                                            child: Image.network(
+                                              subcategory.image,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Text(
+                                            subcategory.subCategoryName,
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  })
+                              : Center(
+                                  child: Text(
+                                    'فعالیتی موجود نیست',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 1.7,
+                                    ),
+                                  ),
+                                ),
+                        ],
+                      ),
                     )
                   : Container(),
             ),

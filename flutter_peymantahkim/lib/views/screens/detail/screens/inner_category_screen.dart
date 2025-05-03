@@ -1,9 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/controllers/subcategory_controller.dart';
 import 'package:flutter_peymantahkim/models/category_model.dart';
 import 'package:flutter_peymantahkim/models/subcategory_model.dart';
 import 'package:flutter_peymantahkim/views/screens/detail/screens/widgets/inner_banner_widget.dart';
+import 'package:flutter_peymantahkim/views/screens/detail/screens/widgets/inner_category_content_widget.dart';
 import 'package:flutter_peymantahkim/views/screens/detail/screens/widgets/inner_header_widget.dart';
+import 'package:flutter_peymantahkim/views/screens/detail/screens/widgets/subcategory_tile_widget.dart';
+import 'package:flutter_peymantahkim/views/screens/nav_screens/account_screen.dart';
+import 'package:flutter_peymantahkim/views/screens/nav_screens/cart_screen.dart';
+import 'package:flutter_peymantahkim/views/screens/nav_screens/category_screen.dart';
+import 'package:flutter_peymantahkim/views/screens/nav_screens/stores_screen.dart';
 
 class InnerCategoryScreen extends StatefulWidget {
   final Category category;
@@ -14,95 +21,50 @@ class InnerCategoryScreen extends StatefulWidget {
 }
 
 class _InnerCategoryScreenState extends State<InnerCategoryScreen> {
-  late Future<List<Subcategory>> _subCategories;
-  final SubcategoryController _subcategoryController = SubcategoryController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _subCategories = _subcategoryController
-        .getSubCategoriesByCategoryName(widget.category.name);
-  }
-
+  int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
-        child: InnerHeaderWidget(),
+    final List<Widget> pages = [
+      InnerCategoryContentWidget(
+        category: widget.category,
       ),
-      body: SingleChildScrollView(
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Column(
-            children: [
-              InnerBannerWidget(image: widget.category.banner),
-              Center(
-                child: Text(
-                  "درخواست شما...",
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.7,
-                  ),
-                ),
-              ),
-              FutureBuilder(
-                future: _subCategories,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('خطا ${snapshot.error}'),
-                    );
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return Center(
-                      child: Text('بدون فعالیت'),
-                    );
-                  } else {
-                    final subcategories = snapshot.data!;
-                    return GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: subcategories.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 8,
-                          crossAxisSpacing: 8),
-                      itemBuilder: (context, index) {
-                        final subcategory = subcategories[index];
-                        return InkWell(
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              Image.network(
-                                subcategory.image,
-                                height: 75,
-                                width: 85,
-                              ),
-                              Text(
-                                subcategory.subCategoryName,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
+      CategoryScreen(),
+      StoresScreen(),
+      CartScreen(),
+      AccountScreen(),
+    ];
+
+    return Scaffold(
+      bottomNavigationBar: Directionality(
+        textDirection: TextDirection.rtl,
+        child: BottomNavigationBar(
+          selectedItemColor: Colors.blue[800],
+          selectedIconTheme: IconThemeData(color: Colors.blue[800]),
+          unselectedItemColor: Colors.blueGrey,
+          currentIndex: pageIndex,
+          onTap: (value) {
+            setState(() {
+              pageIndex = value;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: false,
+          iconSize: 27,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined), label: 'خانه'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.category_outlined), label: 'حوزه فعالیت'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag_outlined), label: 'فروشگاه'),
+            BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.plus_bubble), label: 'ثبت درخواست'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle_outlined), label: 'پروفایل'),
+          ],
         ),
       ),
+      body: pages[pageIndex],
     );
   }
 }
