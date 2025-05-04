@@ -107,7 +107,7 @@ class AuthController {
   }
 
   // sign out
-  Future<void> signOutSer({required context}) async {
+  Future<void> signOutUSer({required context}) async {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       // clear the token and user from shared preferences
