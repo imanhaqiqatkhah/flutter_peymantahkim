@@ -105,4 +105,26 @@ class AuthController {
       print("Error: $e");
     }
   }
+
+  // sign out
+  Future<void> signOutSer({required context}) async {
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      // clear the token and user from shared preferences
+      await preferences.remove('auth_token');
+      await preferences.remove('user');
+      // clear the user state
+      providerContainer.read(userProvider.notifier).signOut();
+      // navigate the user back to login screen
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+          (route) => false);
+
+      showSnackBar(context, 'با موفقیت از حساب کاربری خود خارج شدید');
+    } catch (e) {
+      showSnackBar(context, 'هنگام خروج از حساب کاربری خطایی رخ داد');
+    }
+  }
 }
