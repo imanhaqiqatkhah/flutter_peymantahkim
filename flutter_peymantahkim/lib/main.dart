@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_peymantahkim/provider/user_provider.dart';
 import 'package:flutter_peymantahkim/theme/theme.dart';
 import 'package:flutter_peymantahkim/views/screens/authentication_screens/login_screen.dart';
 import 'package:flutter_peymantahkim/views/screens/main_screen.dart';
 import 'package:flutter_peymantahkim/views/widgets/splash_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,19 +17,51 @@ void main() {
       statusBarBrightness: Brightness.light,
     ),
   );
-  runApp(const MyApp());
+  // run the flutter app wrapped in a provider scope for managing state.
+  runApp(ProviderScope(child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+// root widget of application, a consumer widget to consume state change
+
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
+  // method to check the token and set the user data if available
+
+  Future<void> _checkTokenAndSetUser(WidgetRef ref) async {
+    // obtain an instance of shred preference for local data storage
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    // retrieve the authentication token and user data stored locally
+
+    String? token = preferences.getString('auth_token');
+    String? userJson = preferences.getString('user');
+
+    // if both token and user data are available, update the user state
+    if (token != null && userJson != null) {
+      ref.read(userProvider.notifier);
+    }
+  }
+
+  // This widget is the root of your application.
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       title: 'Flutter PeymanTahkim Company',
-      home: SplashScreen(),
+      home: FutureBuilder(
+          future: _checkTokenAndSetUser(ref),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            final user = ref.watch(userProvider);
+
+            return user != null ? MainScreen() : SplashScreen();
+          }),
     );
   }
 }

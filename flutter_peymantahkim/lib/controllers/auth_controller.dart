@@ -3,10 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_peymantahkim/global_variables.dart';
 import 'package:flutter_peymantahkim/models/user.dart';
+import 'package:flutter_peymantahkim/provider/user_provider.dart';
 import 'package:flutter_peymantahkim/services/manage_http_response.dart';
 import 'package:flutter_peymantahkim/views/screens/authentication_screens/login_screen.dart';
 import 'package:flutter_peymantahkim/views/screens/main_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+final providerContainer = ProviderContainer();
 
 class AuthController {
   Future<void> signUpUsers({
@@ -67,7 +72,29 @@ class AuthController {
       manageHttpResponse(
           response: response,
           context: context,
-          onSuccess: () {
+          onSuccess: () async {
+            // access shared preference for token and user data storage
+            SharedPreferences preferences =
+                await SharedPreferences.getInstance();
+            // extract the authentication token from the response body
+            String token = jsonDecode(response.body)['token'];
+
+            // store the authentication token securely in shared preferences
+
+            await preferences.setString('auth_token', token);
+
+            // encode the user data received from the backend as json
+
+            final userJson = jsonEncode(jsonDecode(response.body)['user']);
+
+            // update the application state with the user data using riverpod
+
+            providerContainer.read(userProvider.notifier).setUser(userJson);
+
+            // store the data in shared preference for future use
+
+            await preferences.setString('user', userJson);
+
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => MainScreen()),
