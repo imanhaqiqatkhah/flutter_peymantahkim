@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_app_peymantahkim/global_variables.dart';
 import 'package:flutter_app_peymantahkim/models/vendor.dart';
 import 'package:flutter_app_peymantahkim/services/manage_http_response.dart';
+import 'package:flutter_app_peymantahkim/views/main_vendor_screen.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -65,6 +67,11 @@ class VendorAuthController {
           response: response,
           context: context,
           onSuccess: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MainVendorScreen()),
+                (route) => false);
             showSnackBar(context, 'کلاینت با موفقیت وارد شد');
           });
     } catch (e) {
