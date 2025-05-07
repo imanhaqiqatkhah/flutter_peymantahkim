@@ -8,6 +8,7 @@ class Vendor {
   final String state;
   final String city;
   final String locality;
+  final String role;
   final String password;
 
   Vendor({
@@ -17,6 +18,7 @@ class Vendor {
     required this.state,
     required this.city,
     required this.locality,
+    required this.role,
     required this.password,
   });
 
@@ -33,6 +35,7 @@ class Vendor {
       "state": state,
       "city": city,
       "locality": locality,
+      "role": role,
       "password": password,
     };
   }
@@ -65,6 +68,7 @@ class Vendor {
       state: map['state'] as String? ?? "",
       city: map['city'] as String? ?? "",
       locality: map['locality'] as String? ?? "",
+      role: map['role'] as String? ?? "",
       password: map['password'] as String? ?? "",
     );
   }
