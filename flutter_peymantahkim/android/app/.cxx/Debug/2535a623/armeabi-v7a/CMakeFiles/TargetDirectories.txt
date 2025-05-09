@@ -1,2 +1,0 @@
-C:/Users/imanh/Downloads/Flutter Project/Flutter PeymanTahkim Project/flutter_peymantahkim/android/app/.cxx/Debug/2535a623/armeabi-v7a/CMakeFiles/edit_cache.dir
-C:/Users/imanh/Downloads/Flutter Project/Flutter PeymanTahkim Project/flutter_peymantahkim/android/app/.cxx/Debug/2535a623/armeabi-v7a/CMakeFiles/rebuild_cache.dir
