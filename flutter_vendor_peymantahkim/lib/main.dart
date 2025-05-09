@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vendor_peymantahkim/provider/vendor_provider.dart';
 import 'package:flutter_vendor_peymantahkim/views/main_vendor_screen.dart';
+import 'package:flutter_vendor_peymantahkim/views/screens/authentication/login_screen.dart';
 import 'package:flutter_vendor_peymantahkim/views/widgets/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,7 +62,7 @@ class MyApp extends ConsumerWidget {
             );
           }
           final vendor = ref.watch(vendorProvider);
-          return vendor != null ? MainVendorScreen() : SplashScreen();
+          return vendor != null ? MainVendorScreen() : LoginScreen();
         },
       ),
     );
