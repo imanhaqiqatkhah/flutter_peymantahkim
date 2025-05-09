@@ -24,7 +24,7 @@ class _MainVendorScreenState extends State<MainVendorScreen> {
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.grey,
           selectedItemColor: const Color.fromARGB(255, 34, 26, 195),
-          showUnselectedLabels: false,
+          showUnselectedLabels: true,
           showSelectedLabels: true,
           items: [
             BottomNavigationBarItem(
