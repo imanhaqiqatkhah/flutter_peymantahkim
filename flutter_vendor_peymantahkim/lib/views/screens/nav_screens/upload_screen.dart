@@ -48,9 +48,9 @@ class _UploadScreenState extends State<UploadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -157,6 +157,7 @@ class _UploadScreenState extends State<UploadScreen> {
                       maxLines: 3,
                       maxLength: 500,
                       decoration: InputDecoration(
+                        alignLabelWithHint: true,
                         labelText: 'توضیحات محصول',
                         border: OutlineInputBorder(),
                       ),
