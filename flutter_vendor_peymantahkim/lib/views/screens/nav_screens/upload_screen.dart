@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_vendor_peymantahkim/controllers/category_controller.dart';
+import 'package:flutter_vendor_peymantahkim/controllers/subcategory_controller.dart';
 import 'package:flutter_vendor_peymantahkim/models/category.dart';
+import 'package:flutter_vendor_peymantahkim/models/subcategory.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadScreen extends StatefulWidget {
@@ -14,8 +16,9 @@ class UploadScreen extends StatefulWidget {
 
 class _UploadScreenState extends State<UploadScreen> {
   late Future<List<Category>> futureCategories;
-  late String name;
+  Future<List<Subcategory>>? futureSubcategories;
   Category? selectedCategory;
+  Subcategory? selectedSubcategory;
 
   @override
   void initState() {
@@ -44,6 +47,12 @@ class _UploadScreenState extends State<UploadScreen> {
         images.add(File(pickedFile.path));
       });
     }
+  }
+
+  getSubcategoryByCategory(value) {
+    // fetch subcategories base on the selected category
+    futureSubcategories =
+        SubcategoryController().getSubCategoriesByCategoryName(value.name);
   }
 
   @override
@@ -117,39 +126,83 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  FutureBuilder(
-                    future: futureCategories,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Center(
-                          child: Text('خطا: ${snapshot.error}'),
-                        );
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return Center(
-                          child: Text('بدون مجموعه'),
-                        );
-                      } else {
-                        return DropdownButton<Category>(
-                            value: selectedCategory,
-                            hint: Text('انتخاب مجموعه'),
-                            items: snapshot.data!.map((Category category) {
-                              return DropdownMenuItem(
-                                value: category,
-                                child: Text(category.name),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                selectedCategory = value;
+                  SizedBox(
+                    width: 200,
+                    child: FutureBuilder<List<Category>>(
+                      future: futureCategories,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text('خطا: ${snapshot.error}'),
+                          );
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return Center(
+                            child: Text('بدون مجموعه'),
+                          );
+                        } else {
+                          return DropdownButton<Category>(
+                              value: selectedCategory,
+                              hint: Text('انتخاب مجموعه'),
+                              items: snapshot.data!.map((Category category) {
+                                return DropdownMenuItem(
+                                  value: category,
+                                  child: Text(category.name),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedCategory = value;
+                                });
+                                getSubcategoryByCategory(selectedCategory);
                               });
-                              print(selectedCategory!.name);
-                            });
-                      }
-                    },
+                        }
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: FutureBuilder<List<Subcategory>>(
+                      future: futureSubcategories,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text('خطا: ${snapshot.error}'),
+                          );
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return Center(
+                            child: Text('بدون فعالیت'),
+                          );
+                        } else {
+                          return DropdownButton<Subcategory>(
+                              value: selectedSubcategory,
+                              hint: Text('انتخاب فعالیت'),
+                              items:
+                                  snapshot.data!.map((Subcategory subcategory) {
+                                return DropdownMenuItem(
+                                  value: subcategory,
+                                  child: Text(subcategory.subCategoryName),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedSubcategory = value;
+                                });
+                              });
+                        }
+                      },
+                    ),
                   ),
                   SizedBox(
                     width: 400,

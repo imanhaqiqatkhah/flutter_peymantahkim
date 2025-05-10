@@ -30,7 +30,7 @@ class _CategoryItemWidgetState extends State<CategoryItemWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ReusableTextWidget(title: 'مجموعه فعالیت ها', subtitle: 'مشاهده همه'),
-          FutureBuilder(
+          FutureBuilder<List<Category>>(
             future: futureCategories,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
