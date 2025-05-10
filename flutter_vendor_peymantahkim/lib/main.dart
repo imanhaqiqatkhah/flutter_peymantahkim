@@ -32,7 +32,8 @@ class MyApp extends ConsumerWidget {
     }
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Vendor PeymanTahkim',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -61,7 +62,7 @@ class MyApp extends ConsumerWidget {
             );
           }
           final vendor = ref.watch(vendorProvider);
-          return vendor != null ? MainVendorScreen() : LoginScreen();
+          return vendor != null ? MainVendorScreen() : MainVendorScreen();
         },
       ),
     );
