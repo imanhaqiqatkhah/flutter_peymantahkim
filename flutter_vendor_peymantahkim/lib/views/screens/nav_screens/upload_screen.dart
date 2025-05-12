@@ -29,6 +29,8 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
   late int quantity;
   late String description;
 
+  bool isLoading = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -133,6 +135,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                     SizedBox(
                       width: 200,
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         onChanged: (value) {
                           productPrice = int.parse(value);
                         },
@@ -153,6 +156,7 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                     SizedBox(
                       width: 200,
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         onChanged: (value) {
                           quantity = int.parse(value);
                         },
@@ -280,17 +284,30 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                     final fullName = ref.read(vendorProvider)!.fullName;
                     final vendorId = ref.read(vendorProvider)!.id;
                     if (_formKey.currentState!.validate()) {
-                      _productController.uploadProduct(
-                          productName: productName,
-                          productPrice: productPrice,
-                          quantity: quantity,
-                          description: description,
-                          category: selectedCategory!.name,
-                          vendorId: vendorId,
-                          fullName: fullName,
-                          subCategory: selectedSubcategory!.subCategoryName,
-                          pickedImages: images,
-                          context: context);
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await _productController
+                          .uploadProduct(
+                        productName: productName,
+                        productPrice: productPrice,
+                        quantity: quantity,
+                        description: description,
+                        category: selectedCategory!.name,
+                        vendorId: vendorId,
+                        fullName: fullName,
+                        subCategory: selectedSubcategory!.subCategoryName,
+                        pickedImages: images,
+                        context: context,
+                      )
+                          .whenComplete(() {
+                        setState(() {
+                          isLoading = false;
+                        });
+                        selectedCategory = null;
+                        selectedSubcategory = null;
+                        images.clear();
+                      });
                     } else {
                       print('آپلود نشد');
                     }
@@ -303,18 +320,22 @@ class _UploadScreenState extends ConsumerState<UploadScreen> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Center(
-                      child: Text(
-                        'آپلود محصول',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: isLoading
+                          ? CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              'آپلود محصول',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
