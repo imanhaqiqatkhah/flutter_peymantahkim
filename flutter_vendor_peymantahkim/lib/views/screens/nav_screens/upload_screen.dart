@@ -1,25 +1,33 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vendor_peymantahkim/controllers/category_controller.dart';
+import 'package:flutter_vendor_peymantahkim/controllers/product_controller.dart';
 import 'package:flutter_vendor_peymantahkim/controllers/subcategory_controller.dart';
 import 'package:flutter_vendor_peymantahkim/models/category.dart';
 import 'package:flutter_vendor_peymantahkim/models/subcategory.dart';
+import 'package:flutter_vendor_peymantahkim/provider/vendor_provider.dart';
 import 'package:image_picker/image_picker.dart';
 
-class UploadScreen extends StatefulWidget {
+class UploadScreen extends ConsumerStatefulWidget {
   const UploadScreen({super.key});
 
   @override
-  State<UploadScreen> createState() => _UploadScreenState();
+  _UploadScreenState createState() => _UploadScreenState();
 }
 
-class _UploadScreenState extends State<UploadScreen> {
+class _UploadScreenState extends ConsumerState<UploadScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final ProductController _productController = ProductController();
   late Future<List<Category>> futureCategories;
   Future<List<Subcategory>>? futureSubcategories;
   Category? selectedCategory;
   Subcategory? selectedSubcategory;
+  late String productName;
+  late int productPrice;
+  late int quantity;
+  late String description;
 
   @override
   void initState() {
@@ -105,6 +113,9 @@ class _UploadScreenState extends State<UploadScreen> {
                     SizedBox(
                       width: 200,
                       child: TextFormField(
+                        onChanged: (value) {
+                          productName = value;
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'نام محصول را وارد کنید';
@@ -122,6 +133,9 @@ class _UploadScreenState extends State<UploadScreen> {
                     SizedBox(
                       width: 200,
                       child: TextFormField(
+                        onChanged: (value) {
+                          productPrice = int.parse(value);
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'قیمت محصول را وارد کنید';
@@ -139,6 +153,9 @@ class _UploadScreenState extends State<UploadScreen> {
                     SizedBox(
                       width: 200,
                       child: TextFormField(
+                        onChanged: (value) {
+                          quantity = int.parse(value);
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'تعداد محصول را وارد کنید';
@@ -234,6 +251,9 @@ class _UploadScreenState extends State<UploadScreen> {
                     SizedBox(
                       width: 400,
                       child: TextFormField(
+                        onChanged: (value) {
+                          description = value;
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'توضیحات محصول را وارد کنید';
@@ -256,9 +276,21 @@ class _UploadScreenState extends State<UploadScreen> {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    final fullName = ref.read(vendorProvider)!.fullName;
+                    final vendorId = ref.read(vendorProvider)!.id;
                     if (_formKey.currentState!.validate()) {
-                      print('آپلود شد');
+                      _productController.uploadProduct(
+                          productName: productName,
+                          productPrice: productPrice,
+                          quantity: quantity,
+                          description: description,
+                          category: selectedCategory!.name,
+                          vendorId: vendorId,
+                          fullName: fullName,
+                          subCategory: selectedSubcategory!.subCategoryName,
+                          pickedImages: images,
+                          context: context);
                     } else {
                       print('آپلود نشد');
                     }

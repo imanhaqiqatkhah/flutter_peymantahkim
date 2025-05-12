@@ -6,7 +6,7 @@ class Product {
   final String productName;
   final int productPrice;
   final int quantity;
-  final String decription;
+  final String description;
   final String category;
   final String vendorId;
   final String fullName;
@@ -18,7 +18,7 @@ class Product {
       required this.productName,
       required this.productPrice,
       required this.quantity,
-      required this.decription,
+      required this.description,
       required this.category,
       required this.vendorId,
       required this.fullName,
@@ -31,7 +31,7 @@ class Product {
       'productName': productName,
       'productPrice': productPrice,
       'quantity': quantity,
-      'decription': decription,
+      'description': description,
       'category': category,
       'vendorId': vendorId,
       'fullName': fullName,
@@ -46,7 +46,7 @@ class Product {
         productName: map['productName'] as String,
         productPrice: map['productPrice'] as int,
         quantity: map['quantity'] as int,
-        decription: map['decription'] as String,
+        description: map['description'] as String,
         category: map['category'] as String,
         vendorId: map['vendorId'] as String,
         fullName: map['fullName'] as String,
